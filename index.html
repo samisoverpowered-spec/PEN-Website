@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Pacific Education Network | Free student-led tutoring</title>
+  <meta name="description" content="Pacific Education Network (PEN) is a BC-registered nonprofit offering free one-on-one tutoring and free study guides for Canadian provincial, AP, and IB courses.">
+  <!-- TODO: replace with your logo, e.g. <link rel="icon" href="assets/logo.png"> -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231D4ED8'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============ Design tokens: white, black, blue ============ */
+    :root {
+      --bg: #FFFFFF;
+      --bg-alt: #F4F6FA;
+      --surface: #FFFFFF;
+      --ink: #000000;
+      --ink-soft: #4A5360;
+      --blue: #1D4ED8;
+      --blue-hover: #1A43B8;
+      --blue-tint: #E8EEFC;
+      --line: #E1E5EB;
+      --inverse: #000000;
+      --on-inverse: #FFFFFF;
+
+      --serif: "Fraunces", Georgia, "Times New Roman", serif;
+      --sans: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+      --wrap: 1120px;
+      --gutter: clamp(1.25rem, 4vw, 2.5rem);
+      --section: clamp(4rem, 9vw, 7rem);
+
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #000000; --bg-alt: #0B0F17; --surface: #0F141D;
+        --ink: #FFFFFF; --ink-soft: #A9B1BD;
+        --blue: #6C98FF; --blue-hover: #8AAEFF; --blue-tint: #122347;
+        --line: #232A36; --inverse: #122347; --on-inverse: #FFFFFF;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #000000; --bg-alt: #0B0F17; --surface: #0F141D;
+      --ink: #FFFFFF; --ink-soft: #A9B1BD;
+      --blue: #6C98FF; --blue-hover: #8AAEFF; --blue-tint: #122347;
+      --line: #232A36; --inverse: #122347; --on-inverse: #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: inherit; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(4.5rem + env(safe-area-inset-top, 0px)); }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink);
+      font-family: var(--sans); font-size: 1.0625rem; line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+
+    .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
+    .section { padding: var(--section) 0; }
+    .section.alt { background: var(--bg-alt); }
+
+    h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.12; margin: 0; letter-spacing: -0.01em; }
+    h2 { font-size: clamp(2rem, 4.4vw, 2.9rem); }
+    h3 { font-size: 1.35rem; }
+    p { margin: 0; }
+    .lede { color: var(--ink-soft); max-width: 40rem; margin-top: 1rem; font-size: 1.125rem; }
+    .section-head { margin-bottom: clamp(2rem, 5vw, 3rem); }
+
+    /* ============ Buttons ============ */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+      font: 600 1rem/1 var(--sans); padding: .95rem 1.4rem; border-radius: 999px;
+      text-decoration: none; border: 2px solid transparent; cursor: pointer;
+      transition: background-color .15s ease, color .15s ease;
+    }
+    .btn-primary { background: var(--blue); color: #fff; }
+    .btn-primary:hover { background: var(--blue-hover); }
+    .btn-ghost { border-color: var(--ink); color: var(--ink); background: transparent; }
+    .btn-ghost:hover { background: var(--ink); color: var(--bg); }
+
+    /* ============ Logo placeholder ============ */
+    /* TODO: swap each .logo-slot for <img class="logo" src="assets/logo.png" alt=""> */
+    .logo-slot {
+      width: 40px; height: 40px; flex: none; border-radius: 10px;
+      border: 1.5px dashed var(--ink-soft); color: var(--ink-soft);
+      display: grid; place-items: center; font: 600 .55rem var(--sans);
+    }
+    .logo { width: 40px; height: 40px; object-fit: contain; flex: none; }
+
+    /* ============ Header ============ */
+    .site-header {
+      position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
+      background: color-mix(in srgb, var(--bg) 90%, transparent);
+      backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 4.25rem; gap: 1rem; }
+    .brand { display: flex; align-items: center; gap: .7rem; text-decoration: none; font-weight: 700; }
+    .brand .logo-slot { display: grid; }
+    .brand span:not(.logo-slot) { display: flex; flex-direction: column; line-height: 1.1; }
+    .brand small { font-weight: 500; font-size: .78rem; color: var(--ink-soft); }
+    .nav-links { display: flex; align-items: center; gap: .25rem; list-style: none; margin: 0; padding: 0; }
+    .nav-links a:not(.btn) { text-decoration: none; font-weight: 500; font-size: .98rem; padding: .5rem .8rem; border-radius: 999px; color: var(--ink-soft); }
+    .nav-links a:not(.btn):hover, .nav-links a.is-active { color: var(--ink); background: var(--blue-tint); }
+    .nav-links .btn { padding: .7rem 1.15rem; margin-left: .5rem; }
+    .menu-btn { display: none; background: none; border: 0; padding: .5rem; cursor: pointer; color: var(--ink); }
+    .menu-btn svg { width: 28px; height: 28px; }
+    @media (max-width: 860px) {
+      .menu-btn { display: block; }
+      .nav-links {
+        position: fixed; inset: calc(4.25rem + env(safe-area-inset-top, 0px)) 0 auto 0;
+        flex-direction: column; align-items: stretch; gap: 0;
+        background: var(--bg); border-bottom: 1px solid var(--line);
+        padding: .75rem var(--gutter) 1.5rem;
+        transform: translateY(-110%); visibility: hidden; transition: transform .25s ease, visibility .25s;
+      }
+      .nav-links.open { transform: translateY(0); visibility: visible; }
+      .nav-links a:not(.btn) { display: block; padding: .9rem .25rem; border-radius: 0; border-bottom: 1px solid var(--line); font-size: 1.1rem; color: var(--ink); }
+      .nav-links a:not(.btn):hover { background: none; }
+      .nav-links .btn { margin: 1rem 0 0; }
+    }
+
+    /* ============ Hero ============ */
+    .hero { overflow: hidden; padding: clamp(3.5rem, 9vw, 7rem) 0 clamp(3rem, 7vw, 5rem); }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 2rem; }
+    .hero h1 { font-size: clamp(2.9rem, 8.2vw, 5.8rem); letter-spacing: -0.025em; line-height: .98; }
+    .hero h1 .line2 { display: block; font-style: italic; font-weight: 400; color: var(--blue); }
+    .hero .lede { font-size: clamp(1.1rem, 1.6vw, 1.25rem); margin-top: 1.5rem; max-width: 34rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+    .hero-note { margin-top: 1.5rem; font-size: .95rem; color: var(--ink-soft); display: flex; align-items: center; gap: .5rem; }
+    .hero-note svg { width: 18px; height: 18px; color: var(--blue); flex: none; }
+
+    .tide { width: 100%; height: auto; color: var(--blue); }
+    .tide path { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 2.2s cubic-bezier(.3,.6,.2,1) forwards; }
+    .tide path:nth-child(1) { opacity: .95; animation-delay: .05s; }
+    .tide path:nth-child(2) { opacity: .8;  animation-delay: .15s; }
+    .tide path:nth-child(3) { opacity: .65; animation-delay: .25s; }
+    .tide path:nth-child(4) { opacity: .5;  animation-delay: .35s; }
+    .tide path:nth-child(5) { opacity: .38; animation-delay: .45s; }
+    .tide path:nth-child(6) { opacity: .26; animation-delay: .55s; }
+    .tide path:nth-child(7) { opacity: .16; animation-delay: .65s; }
+    .tide circle { fill: var(--ink); opacity: 0; animation: pop .5s ease 1.6s forwards; }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    @keyframes pop { to { opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) { .tide path { stroke-dashoffset: 0; } .tide circle { opacity: 1; } }
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-art { order: -1; max-width: 300px; margin: -1.5rem 0 -1rem -.5rem; }
+    }
+
+    /* ============ Three ways in ============ */
+    .paths { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 1rem; }
+    .path {
+      display: flex; flex-direction: column; gap: .75rem; padding: 1.75rem; border-radius: 20px;
+      text-decoration: none; background: var(--surface); border: 1px solid var(--line);
+      transition: border-color .15s ease;
+    }
+    .path:hover { border-color: var(--blue); }
+    .path h3 { font-size: 1.5rem; }
+    .path p { color: var(--ink-soft); }
+    .path .go { margin-top: auto; padding-top: .5rem; font-weight: 600; color: var(--blue); display: inline-flex; align-items: center; gap: .35rem; }
+    .path .go svg { width: 18px; height: 18px; transition: transform .15s ease; }
+    .path:hover .go svg { transform: translateX(3px); }
+    .path.main { background: var(--blue); border-color: var(--blue); color: #fff; }
+    .path.main p { color: rgba(255,255,255,.85); }
+    .path.main .go { color: #fff; }
+    .path-icon { width: 40px; height: 40px; color: var(--blue); }
+    .path.main .path-icon { color: #fff; }
+    :root[data-theme="dark"] .path.main { background: #1D4ED8; border-color: #1D4ED8; }
+    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .path.main { background: #1D4ED8; border-color: #1D4ED8; } }
+    @media (max-width: 860px) { .paths { grid-template-columns: 1fr; } }
+
+    /* ============ Subjects explorer ============ */
+    .tabs { display: flex; gap: .25rem; border-bottom: 1px solid var(--line); margin-bottom: 2rem; overflow-x: auto; }
+    .tab {
+      font: 600 1rem var(--sans); color: var(--ink-soft); background: none; border: 0;
+      padding: .8rem 1rem; cursor: pointer; border-bottom: 2.5px solid transparent; margin-bottom: -1px; white-space: nowrap;
+    }
+    .tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--blue); }
+    @media (max-width: 480px) { .tab { padding: .8rem .65rem; font-size: .95rem; } }
+
+    .picker { display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem; margin-bottom: 1.5rem; }
+    .tab.pick {
+      display: flex; flex-direction: column; align-items: flex-start; gap: .2rem; text-align: left;
+      padding: 1.1rem 1.25rem; margin: 0; border-radius: 16px;
+      background: var(--surface); border: 1.5px solid var(--line); color: var(--ink);
+      transition: border-color .15s ease, background-color .15s ease;
+    }
+    .tab.pick b { font-family: var(--serif); font-weight: 500; font-size: 1.45rem; line-height: 1.1; }
+    .tab.pick span { font-size: .9rem; font-weight: 500; color: var(--ink-soft); white-space: normal; }
+    .tab.pick:hover { border-color: var(--blue); }
+    .tab.pick[aria-selected="true"] { background: var(--blue); border-color: var(--blue); color: #fff; }
+    .tab.pick[aria-selected="true"] span { color: rgba(255,255,255,.85); }
+    :root[data-theme="dark"] .tab.pick[aria-selected="true"] { background: #1D4ED8; border-color: #1D4ED8; }
+    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tab.pick[aria-selected="true"] { background: #1D4ED8; border-color: #1D4ED8; } }
+    @media (max-width: 760px) { .picker { grid-template-columns: 1fr 1fr; } .tab.pick { padding: .9rem 1rem; } .tab.pick b { font-size: 1.25rem; } }
+    .subject-grid { display: grid; grid-template-columns: 1.55fr 1fr; gap: 1.25rem; align-items: start; }
+    .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 1.6rem; }
+    .panel h3 { font-size: 1.3rem; margin-bottom: .35rem; }
+    .panel > p { color: var(--ink-soft); font-size: .98rem; margin-bottom: 1rem; }
+    .side { display: grid; gap: 1.25rem; }
+
+    .provinces { list-style: none; margin: 0; padding: 0; }
+    .provinces li { padding: .95rem 0; border-top: 1px solid var(--line); }
+    .prov-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .15rem .6rem; margin-bottom: .25rem; }
+    .prov-head strong { font-weight: 600; }
+    .prov-head small { color: var(--blue); font-weight: 600; font-size: .85rem; }
+    .provinces p { color: var(--ink-soft); font-size: .96rem; }
+
+    .course-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .45rem; }
+    .chip { font-size: .88rem; font-weight: 600; padding: .38rem .8rem; border-radius: 999px; background: var(--blue-tint); color: var(--ink); }
+
+    .extra { margin-top: 1.25rem; background: var(--inverse); color: var(--on-inverse); border-radius: 20px; padding: 1.75rem; display: grid; grid-template-columns: 1fr 1.4fr; gap: 1.5rem; }
+    .extra h3 { font-size: 1.4rem; }
+    .extra p { color: rgba(255,255,255,.8); margin-top: .5rem; font-size: .98rem; }
+    .tracks { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; }
+    .tracks li { border: 1px solid rgba(255,255,255,.22); border-radius: 12px; padding: .8rem 1rem; }
+    .tracks b { display: block; }
+    .tracks span { font-size: .92rem; color: rgba(255,255,255,.75); }
+    @media (max-width: 860px) { .subject-grid, .extra { grid-template-columns: 1fr; } }
+
+    /* ============ How it works ============ */
+    .steps-wrap { margin-top: clamp(3rem, 7vw, 4.5rem); }
+    .steps-wrap > h3 { margin-bottom: 1.5rem; }
+    .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; counter-reset: step; }
+    .steps li { counter-increment: step; border-top: 2px solid var(--ink); padding-top: 1rem; }
+    .steps li::before { content: counter(step); display: block; font-family: var(--serif); font-size: 2rem; line-height: 1; color: var(--blue); margin-bottom: .6rem; }
+    .steps h4 { font: 600 1.1rem var(--sans); margin: 0 0 .25rem; }
+    .steps p { color: var(--ink-soft); }
+    .steps-cta { margin-top: 2rem; }
+    @media (max-width: 760px) { .steps { grid-template-columns: 1fr; } }
+
+    /* ============ Resources ============ */
+    .res-tools { display: flex; flex-wrap: wrap; gap: .75rem 1rem; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
+    .filters { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .filter { font: 600 .95rem var(--sans); padding: .55rem 1rem; border-radius: 999px; cursor: pointer; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink-soft); }
+    .filter[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+    .search { position: relative; flex: 1 1 240px; max-width: 320px; }
+    .search svg { position: absolute; left: .9rem; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--ink-soft); }
+    .search input { width: 100%; font: 500 1rem var(--sans); color: var(--ink); padding: .7rem 1rem .7rem 2.6rem; border-radius: 999px; border: 1.5px solid var(--line); background: var(--surface); }
+    .search input:focus { outline: none; border-color: var(--blue); }
+    @media (max-width: 640px) { .search { max-width: none; flex-basis: 100%; order: -1; } }
+
+    .res-list { list-style: none; margin: 0; padding: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; }
+    .res-list > li + li { border-top: 1px solid var(--line); }
+    @media (min-width: 900px) {
+      .res-list { display: grid; grid-template-columns: 1fr 1fr; grid-auto-flow: dense; }
+      .res-list > li + li { border-top: 0; }
+      .res-list > li { box-shadow: 1px 0 0 var(--line), 0 1px 0 var(--line); }
+      .res-list > li.res-empty, .res-list > li.res-multi { grid-column: 1 / -1; }
+    }
+    .res-multi { padding: 1.05rem 1.4rem; }
+    .res-row { display: flex; align-items: center; justify-content: space-between; gap: .9rem; margin-bottom: .75rem; }
+    .res-topics { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .45rem; }
+    .res-topics a {
+      display: inline-flex; align-items: center; gap: .35rem; text-decoration: none;
+      font-size: .92rem; font-weight: 600; padding: .4rem .8rem; border-radius: 999px;
+      border: 1.5px solid var(--line); background: var(--surface);
+    }
+    .res-topics a:hover { border-color: var(--blue); color: var(--blue); }
+    .res-topics svg { width: 14px; height: 14px; color: var(--blue); }
+    .res-list > li > a { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: .9rem; padding: 1.05rem 1.4rem; text-decoration: none; }
+    .res-list > li > a:hover { background: var(--blue-tint); }
+    .res-name { font-weight: 600; }
+    .res-tag { font-size: .78rem; font-weight: 700; padding: .25rem .6rem; border-radius: 6px; white-space: nowrap; border: 1.5px solid var(--ink); }
+    .res-tag.ib { background: var(--ink); color: var(--bg); }
+    .res-tag.ap { border-color: var(--blue); color: var(--blue); }
+    .res-open { width: 20px; height: 20px; color: var(--blue); }
+    .res-empty { padding: 2rem 1.4rem; color: var(--ink-soft); }
+    .res-count { font-size: .95rem; color: var(--ink-soft); margin-top: 1rem; }
+
+    /* ============ Placeholders (stats + testimonials) ============ */
+    .ph { border: 1.5px dashed color-mix(in srgb, var(--ink-soft) 45%, transparent); border-radius: 20px; color: var(--ink-soft); display: grid; place-items: center; text-align: center; padding: 1.5rem; font-size: .95rem; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .stat { padding: 1.4rem 0; border-top: 2px solid var(--ink); }
+    .stat b { display: block; font-family: var(--serif); font-weight: 500; font-size: clamp(2.2rem, 4vw, 3rem); line-height: 1.05; color: var(--blue); }
+    .stat span { color: var(--ink-soft); }
+    .stats .ph { min-height: 130px; }
+    @media (max-width: 760px) { .stats { grid-template-columns: 1fr 1fr; } }
+
+    .quotes-head { margin: clamp(3rem, 7vw, 4.5rem) 0 1.5rem; }
+    .quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .quote { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 1.6rem; display: flex; flex-direction: column; gap: 1rem; }
+    .quote blockquote { margin: 0; font-family: var(--serif); font-size: 1.15rem; line-height: 1.5; }
+    .quote figcaption { margin-top: auto; font-size: .92rem; color: var(--ink-soft); }
+    .quotes .ph { min-height: 190px; }
+    @media (max-width: 860px) { .quotes { grid-template-columns: 1fr; } .quotes .ph { min-height: 120px; } }
+
+    /* ============ About ============ */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 5rem); }
+    .about-grid h3 { font-size: 1.6rem; margin-bottom: .75rem; }
+    .about-grid p { color: var(--ink-soft); }
+    .facts { list-style: none; margin: 2rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
+    .facts li { display: flex; align-items: center; gap: .45rem; padding: .5rem .9rem; border: 1px solid var(--line); border-radius: 999px; font-size: .95rem; font-weight: 500; background: var(--surface); }
+    .facts svg { width: 16px; height: 16px; color: var(--blue); }
+    @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; } }
+
+    /* ============ Team ============ */
+    .people { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 2rem 1.25rem; list-style: none; margin: 0; padding: 0; }
+    .person { text-align: center; }
+    .avatar { width: 112px; height: 112px; margin: 0 auto .9rem; border-radius: 50%; display: grid; place-items: center; overflow: hidden; background: var(--blue-tint); color: var(--blue); font-family: var(--serif); font-size: 2rem; }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .person h3 { font-family: var(--sans); font-size: 1.02rem; font-weight: 600; }
+    .person p { font-size: .92rem; color: var(--ink-soft); }
+    .team-note { margin-top: 2.5rem; color: var(--ink-soft); }
+    .team-note a { color: var(--blue); font-weight: 600; }
+    @media (max-width: 480px) { .people { grid-template-columns: repeat(2, 1fr); } .avatar { width: 92px; height: 92px; font-size: 1.7rem; } }
+
+    /* ============ Join band + footer ============ */
+    .join { background: var(--inverse); color: var(--on-inverse); border-radius: 28px; padding: clamp(2.25rem, 6vw, 4rem); display: grid; grid-template-columns: 1.3fr 1fr; gap: 2rem; align-items: center; }
+    .join p { color: rgba(255,255,255,.8); margin-top: .75rem; max-width: 30rem; }
+    .join-actions { display: flex; flex-direction: column; gap: .75rem; }
+    .join .btn-ghost { border-color: #fff; color: #fff; }
+    .join .btn-ghost:hover { background: #fff; color: #000; }
+    @media (max-width: 760px) { .join { grid-template-columns: 1fr; } }
+
+    .site-footer { padding: 3.5rem 0 2.5rem; font-size: .95rem; color: var(--ink-soft); border-top: 1px solid var(--line); }
+    .foot-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 2rem; }
+    .foot-grid h4 { font: 600 .95rem var(--sans); color: var(--ink); margin: 0 0 .75rem; }
+    .foot-grid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .45rem; }
+    .foot-grid a { text-decoration: none; }
+    .foot-grid a:hover { color: var(--ink); text-decoration: underline; }
+    .foot-bottom { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; justify-content: space-between; }
+    @media (max-width: 760px) { .foot-grid { grid-template-columns: 1fr 1fr; } .foot-grid > :first-child { grid-column: 1 / -1; } }
+
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+  </style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-open" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-person" viewBox="0 0 40 40"><circle cx="20" cy="14" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 34c1.5-7 6.5-10 12-10s10.5 3 12 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-book" viewBox="0 0 40 40"><path d="M6 9c5-2 10-2 14 1v22c-4-3-9-3-14-1zM34 9c-5-2-10-2-14 1v22c4-3 9-3 14-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-hand" viewBox="0 0 40 40"><path d="M20 33s-11-6.5-11-14.5A6 6 0 0 1 20 15a6 6 0 0 1 11 3.5C31 26.5 20 33 20 33z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="site-header">
+  <nav class="wrap nav" aria-label="Main">
+    <a class="brand" href="#top" aria-label="Pacific Education Network, home">
+      <span class="logo-slot" aria-hidden="true">LOGO</span>
+      <span>PEN<small>Pacific Education Network</small></span>
+    </a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#tutoring">Tutoring</a></li>
+      <li><a href="#resources">Study guides</a></li>
+      <li><a href="#impact">Impact</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a class="btn btn-primary" href="https://forms.gle/yePxF1p6JSNqcd8R8" target="_blank" rel="noopener">Find a tutor</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Conquer education <span class="line2">together.</span></h1>
+        <p class="lede">Free one-on-one tutoring and free study guides from students who aced the course. Provincial curricula across Canada, plus AP and IB.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://forms.gle/yePxF1p6JSNqcd8R8" target="_blank" rel="noopener">Find a tutor</a>
+          <a class="btn btn-ghost" href="#resources">Browse study guides</a>
+        </div>
+        <p class="hero-note">
+          <svg aria-hidden="true"><use href="#i-check"/></svg>
+          Always free. BC-registered nonprofit society since 2024.
+        </p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg class="tide" viewBox="0 0 520 420">
+          <path pathLength="1" d="M10 90 C 90 40, 160 140, 250 90 S 420 40, 510 95"/>
+          <path pathLength="1" d="M10 140 C 95 95, 165 185, 255 140 S 420 95, 510 145"/>
+          <path pathLength="1" d="M10 190 C 100 150, 170 230, 260 190 S 420 150, 510 195"/>
+          <path pathLength="1" d="M10 240 C 105 205, 175 275, 265 240 S 420 205, 510 245"/>
+          <path pathLength="1" d="M10 290 C 110 260, 180 320, 270 290 S 420 260, 510 295"/>
+          <path pathLength="1" d="M10 340 C 115 315, 185 365, 275 340 S 420 315, 510 345"/>
+          <path pathLength="1" d="M10 390 C 120 370, 190 410, 280 390 S 420 370, 510 395"/>
+          <circle cx="250" cy="90" r="8"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THREE WAYS IN ============ -->
+  <section style="padding-bottom: var(--section)" aria-label="Get started">
+    <div class="wrap paths">
+      <a class="path main" href="https://forms.gle/yePxF1p6JSNqcd8R8" target="_blank" rel="noopener">
+        <svg class="path-icon" aria-hidden="true"><use href="#i-person"/></svg>
+        <h3>I need help with a class</h3>
+        <p>Tell us your course and what you are stuck on. We match you with a tutor who has done well in that exact course.</p>
+        <span class="go">Request a tutor <svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
+      </a>
+      <a class="path" href="#resources">
+        <svg class="path-icon" aria-hidden="true"><use href="#i-book"/></svg>
+        <h3>I want to study on my own</h3>
+        <p>Open any of our free IB, AP, and standard course guides. No sign-up needed.</p>
+        <span class="go">See the guides <svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
+      </a>
+      <a class="path" href="https://forms.gle/mitpnMZ8ZhozAMVT6" target="_blank" rel="noopener">
+        <svg class="path-icon" aria-hidden="true"><use href="#i-hand"/></svg>
+        <h3>I want to tutor</h3>
+        <p>Share what you know with students who need it. Flexible hours, low workload, and volunteer hours logged.</p>
+        <span class="go">Apply to teach <svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ TUTORING ============ -->
+  <section class="section alt" id="tutoring">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Math, sciences, English, and French</h2>
+        <p class="lede">Each subject covers provincial curricula across Canada, plus AP and IB courses. Sessions are one-on-one and online, so you can join from anywhere. Pick a subject to see the courses we tutor.</p>
+      </div>
+
+      <div class="picker" role="tablist" aria-label="Subjects" id="subject-tabs">
+        <button class="tab pick" role="tab" aria-selected="true"  data-subject="math"><b>Math</b><span>Grade 8 math to calculus</span></button>
+        <button class="tab pick" role="tab" aria-selected="false" data-subject="science"><b>Sciences</b><span>Biology, chemistry, physics</span></button>
+        <button class="tab pick" role="tab" aria-selected="false" data-subject="english"><b>English</b><span>Standard and international</span></button>
+        <button class="tab pick" role="tab" aria-selected="false" data-subject="french"><b>French</b><span>Core and immersion</span></button>
+      </div>
+
+      <div id="subject-panel" role="tabpanel"></div>
+
+      <div class="steps-wrap">
+        <h3>How it works</h3>
+        <ol class="steps">
+          <li><h4>Send a request</h4><p>Fill out a short form with your course, grade, and the topics giving you trouble.</p></li>
+          <li><h4>Get matched</h4><p>We pair you with a tutor who scored highly in that course and fits your schedule.</p></li>
+          <li><h4>Learn and track progress</h4><p>Meet online each week, follow a study plan, and see your improvement over time.</p></li>
+        </ol>
+        <a class="btn btn-primary steps-cta" href="https://forms.gle/yePxF1p6JSNqcd8R8" target="_blank" rel="noopener">Request a tutor</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESOURCES ============ -->
+  <section class="section" id="resources">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Free study guides</h2>
+        <p class="lede">We believe course material should be open to everyone. Our tutors write and update these guides, and they are free for anyone to use.</p>
+      </div>
+      <div class="res-tools">
+        <div class="filters" role="group" aria-label="Filter guides by subject">
+          <button class="filter" aria-pressed="true"  data-filter="all">All</button>
+          <button class="filter" aria-pressed="false" data-filter="math">Math</button>
+          <button class="filter" aria-pressed="false" data-filter="science">Sciences</button>
+          <button class="filter" aria-pressed="false" data-filter="humanities">Humanities</button>
+          <button class="filter" aria-pressed="false" data-filter="skills">Study skills</button>
+        </div>
+        <label class="search">
+          <span class="sr-only">Search guides</span>
+          <svg aria-hidden="true"><use href="#i-search"/></svg>
+          <input type="search" id="res-search" placeholder="Search guides" autocomplete="off">
+        </label>
+      </div>
+      <ul class="res-list" id="res-list" aria-live="polite"></ul>
+      <p class="res-count" id="res-count"></p>
+    </div>
+  </section>
+
+  <!-- ============ IMPACT ============ -->
+  <section class="section alt" id="impact">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Our impact</h2>
+        <p class="lede">Every session and every guide is free. Here is what that adds up to.</p>
+      </div>
+      <div class="stats" id="stats"></div>
+
+      <h3 class="quotes-head">What students and families say</h3>
+      <div class="quotes" id="quotes"></div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="section-head"><h2>By students, for students</h2></div>
+      <div class="about-grid">
+        <div>
+          <h3>Our mission</h3>
+          <p>To empower every student with resources, mentorship, support, and personalized tutoring.</p>
+        </div>
+        <div>
+          <h3>Our vision</h3>
+          <p>Every learner should be able to get great academic support, no matter their school, interests, learning style, or income. As we grow into more schools and subjects, our services will stay free.</p>
+        </div>
+      </div>
+      <ul class="facts">
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Registered society in British Columbia</li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Nonprofit</li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Founded 2024 in Vancouver</li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Run entirely by students</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ TEAM ============ -->
+  <section class="section alt" id="team">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Meet the team</h2>
+        <p class="lede">Our executives run scheduling, quality, communications, and tech. Our tutors bring the lessons and guides to life.</p>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Team groups" id="team-tabs">
+        <button class="tab" role="tab" aria-selected="true"  data-group="exec">Executive board</button>
+        <button class="tab" role="tab" aria-selected="false" data-group="math">Math</button>
+        <button class="tab" role="tab" aria-selected="false" data-group="science">Sciences</button>
+        <button class="tab" role="tab" aria-selected="false" data-group="languages">Languages</button>
+      </div>
+      <ul class="people" id="people" role="tabpanel"></ul>
+      <p class="team-note">Want to join them? <a href="https://forms.gle/mitpnMZ8ZhozAMVT6" target="_blank" rel="noopener">Apply to tutor</a></p>
+    </div>
+  </section>
+
+  <!-- ============ JOIN ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="join">
+        <div>
+          <h2>Ready when you are</h2>
+          <p>Whether you need a hand with a tough unit or you want to help someone through one, it starts with a short form.</p>
+        </div>
+        <div class="join-actions">
+          <a class="btn btn-primary" href="https://forms.gle/yePxF1p6JSNqcd8R8" target="_blank" rel="noopener">Find a tutor</a>
+          <a class="btn btn-ghost" href="https://forms.gle/mitpnMZ8ZhozAMVT6" target="_blank" rel="noopener">Apply to teach</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top" style="margin-bottom:.9rem">
+          <span class="logo-slot" aria-hidden="true">LOGO</span>
+          <span>PEN<small>Pacific Education Network</small></span>
+        </a>
+        <p>Better access to education, free for everyone. Vancouver, BC.</p>
+        <!-- TODO: add your contact email here -->
+      </div>
+      <div>
+        <h4>Get started</h4>
+        <ul>
+          <li><a href="https://forms.gle/yePxF1p6JSNqcd8R8" target="_blank" rel="noopener">Find a tutor</a></li>
+          <li><a href="#resources">Study guides</a></li>
+          <li><a href="https://forms.gle/mitpnMZ8ZhozAMVT6" target="_blank" rel="noopener">Apply to teach</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Follow us</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/pacific.education_network" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://xhslink.com/m/A9ECkX1AAiS" target="_blank" rel="noopener">RedNote (小红书)</a></li>
+          <li><a href="https://www.youtube.com/channel/UC0TZGQO3O-BkHHsrfI8_abQ" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://linktr.ee/pacific.education_network" target="_blank" rel="noopener">All links</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; <span id="year">2026</span> Pacific Education Network. All rights reserved.</span>
+      <a href="#" style="text-decoration:none">Privacy policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* =========================================================
+     EDIT HERE: provinces (shared by every subject)
+     ========================================================= */
+  const PROVINCES = [
+    { id: "bc", name: "British Columbia", diploma: "Dogwood Diploma" },
+    { id: "ab", name: "Alberta",          diploma: "Alberta High School Diploma" },
+    { id: "sk", name: "Saskatchewan",     diploma: "Saskatchewan High School Diploma" },
+    { id: "mb", name: "Manitoba",         diploma: "Manitoba High School Diploma" },
+    { id: "on", name: "Ontario",          diploma: "Ontario Secondary School Diploma (OSSD)" }
+  ];
+
+  /* =========================================================
+     EDIT HERE: subjects
+     canada: courses per province id (above)
+     ap / ib: courses your tutors are qualified to teach
+     ========================================================= */
+  const SUBJECTS = {
+    math: {
+      canada: {
+        bc: "Math 8 to 10, Pre-Calculus 11 and 12, Foundations of Math 11 and 12, Calculus 12",
+        ab: "Math 10C, Math 20-1 and 30-1, Math 20-2 and 30-2, Math 31",
+        sk: "Foundations of Math and Pre-Calculus 10, Pre-Calculus 20 and 30, Foundations of Math 20 and 30, Calculus 30",
+        mb: "Grade 9 and 10 Math, Pre-Calculus Math 30S and 40S, Applied Math 30S and 40S",
+        on: "Grade 9 Math (MTH1W), Grade 10 Principles (MPM2D), Functions (MCR3U), Advanced Functions (MHF4U), Calculus and Vectors (MCV4U)"
+      },
+      ap: ["AP Precalculus", "AP Calculus AB", "AP Calculus BC", "AP Statistics"],
+      ib: ["Math: Analysis and Approaches SL/HL", "Math: Applications and Interpretation SL/HL"]
+    },
+    science: {
+      canada: {
+        bc: "Science 8 to 10, Life Sciences 11, Chemistry 11 and 12, Physics 11 and 12, Anatomy and Physiology 12",
+        ab: "Science 10, Biology 20 and 30, Chemistry 20 and 30, Physics 20 and 30",
+        sk: "Science 9 and 10, Biology 30, Chemistry 20 and 30, Physics 20 and 30",
+        mb: "Grade 9 and 10 Science, Biology 30S and 40S, Chemistry 30S and 40S, Physics 30S and 40S",
+        on: "Grade 9 and 10 Science (SNC1W, SNC2D), Biology (SBI3U, SBI4U), Chemistry (SCH3U, SCH4U), Physics (SPH3U, SPH4U)"
+      },
+      ap: ["AP Biology", "AP Chemistry", "AP Physics 1", "AP Physics 2"],
+      ib: ["Biology SL/HL", "Chemistry SL/HL", "Physics SL/HL"]
+    },
+    english: {
+      canada: {
+        bc: "English Language Arts 8 to 10, Composition 11 and 12, Literary Studies 11 and 12, English Studies 12",
+        ab: "English Language Arts 10-1, 20-1, 30-1 and 10-2, 20-2, 30-2",
+        sk: "English Language Arts A10 and B10, ELA 20, ELA A30 and B30",
+        mb: "English Language Arts Grade 9 to 12 (10F to 40S)",
+        on: "English (ENL1W, ENG2D, ENG3U, ENG4U)"
+      },
+      ap: ["AP English Language and Composition", "AP English Literature and Composition"],
+      ib: ["English A: Literature SL/HL", "English A: Language and Literature SL/HL", "English B SL/HL"],
+      extra: {
+        title: "English for international students",
+        text: "A separate three-track program for students learning English as an additional language. Levels are mapped to CEFR and BC ELL benchmarks, so progress is easy to measure.",
+        tracks: [
+          { name: "Speaking and Grammar", desc: "Conversation, pronunciation, and grammar in context" },
+          { name: "Reading Comprehension", desc: "Vocabulary, understanding, and response" },
+          { name: "Writing and Grammar", desc: "Sentence to essay structure and accuracy" }
+        ]
+      }
+    },
+    french: {
+      canada: {
+        bc: "Core French 8 to 12, Français langue seconde (immersion)",
+        ab: "French as a Second Language 10, 20, 30 and French Language Arts",
+        sk: "Core French 10, 20, 30",
+        mb: "Basic French, Français (immersion)",
+        on: "Core French (FSF) and French Immersion (FIF)"
+      },
+      ap: ["AP French Language and Culture"],
+      ib: ["French B SL/HL", "French ab initio SL"]
+    }
+  };
+
+  /* =========================================================
+     EDIT HERE: study guides
+     tag: IB | AP | Standard
+     group: math | science | humanities | skills
+     ========================================================= */
+  const GUIDES = [
+    { title: "Pre-Calculus 11",        tag: "Standard", group: "math",       url: "https://dub.sh/Sc8uNxn" },
+    { title: "Pre-Calculus 12",        tag: "Standard", group: "math",       url: "https://ggl.link/TAHVqlf" },
+    { title: "IB Math AA SL/HL",       tag: "IB",       group: "math",       url: "https://ggl.link/x5gT7uG" },
+    { title: "IB Biology SL/HL",       tag: "IB",       group: "science",    url: "https://ggl.link/yKJgBuP" },
+    { title: "IB Chemistry SL/HL",     tag: "IB",       group: "science",    url: "https://ggl.link/N1CUTqo" },
+    { title: "IB Physics SL/HL",       tag: "IB",       group: "science",    url: "https://ggl.link/a9nwDzL" },
+    { title: "IB Geography SL/HL",     tag: "IB",       group: "humanities", url: "https://ggl.link/jcPiOMi" },
+    /* A guide with several parts: use topics instead of url */
+    { title: "IB History SL/HL",       tag: "IB",       group: "humanities", topics: [
+        { name: "Causes of WWI",         url: "https://ggl.link/4D8sMJo" },
+        { name: "Battles of WWI",        url: "https://ggl.link/RNFJ0TS" },
+        { name: "Paris Peace Treaties",  url: "https://ggl.link/9R6foH9" },
+        { name: "Russian Revolution",    url: "https://ggl.link/h631dt7" },
+        { name: "Emergence of the USSR", url: "https://ggl.link/YLECES5" },
+        { name: "Stalin",                url: "https://ggl.link/ZDC8oeZ" }
+    ]},
+    { title: "Economics",              tag: "Standard", group: "humanities", url: "https://ggl.link/lxfZK77" },
+    { title: "How to Write an Academic Paper", tag: "Standard", group: "skills", url: "https://ggl.link/eVqWLz6" },
+    { title: "IB CAS Guide",           tag: "IB",       group: "skills",     url: "https://ggl.link/WktI3wt" }
+  ];
+
+  /* =========================================================
+     EDIT HERE: stats (empty = placeholder boxes)
+     e.g. { value: "250+", label: "students tutored" }
+     ========================================================= */
+  const STATS = [];
+  const STAT_SLOTS = 4;
+
+  /* =========================================================
+     EDIT HERE: testimonials (empty = placeholder boxes)
+     e.g. { quote: "...", who: "Parent of a Grade 10 student" }
+     ========================================================= */
+  const TESTIMONIALS = [];
+  const TESTIMONIAL_SLOTS = 3;
+
+  /* =========================================================
+     EDIT HERE: team. photo: "assets/team/first-last.webp" or "" for initials
+     ========================================================= */
+  const TEAM = {
+    exec: [
+      { name: "Yicheng Yang", role: "Founder & President", photo: "" },
+      { name: "Sam Wang", role: "Co-Founder & Vice President", photo: "" },
+      { name: "Ayden Leung", role: "Director of Quality Assurance", photo: "" },
+      { name: "Alisa Du", role: "Director of Communications", photo: "" },
+      { name: "Ben Fung", role: "Director of Academics", photo: "" },
+      { name: "Lucas Moss", role: "Director of Technology", photo: "" }
+    ],
+    math: [
+      { name: "Hyobeen Ahn", role: "Math", photo: "" },
+      { name: "Amir Shekari", role: "Math", photo: "" },
+      { name: "Lucy Dong", role: "Math", photo: "" },
+      { name: "Anushka Mukherjee", role: "Math & English", photo: "" },
+      { name: "Meghan Sandhu", role: "Math", photo: "" },
+      { name: "Ethan Fu", role: "Math", photo: "" }
+    ],
+    science: [
+      { name: "Emad Badei", role: "Biology", photo: "" },
+      { name: "Ayesha Klair", role: "Biology", photo: "" },
+      { name: "Matt Chong", role: "Physics", photo: "" }
+    ],
+    languages: [
+      { name: "James Lin", role: "English", photo: "" },
+      { name: "Gillian Xie", role: "English", photo: "" },
+      { name: "Emma Jia", role: "English", photo: "" },
+      { name: "Mike Zhang", role: "English", photo: "" },
+      { name: "Amy Lu", role: "English", photo: "" },
+      { name: "Chloe Fu", role: "English", photo: "" },
+      { name: "Anushka Mukherjee", role: "Math & English", photo: "" },
+      { name: "Jahnavi Bhosale", role: "English", photo: "" },
+      { name: "Brianna Barbucci", role: "French", photo: "" }
+    ]
+  };
+
+  /* ================= Behaviour (no need to edit) ================= */
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+  // Mobile menu
+  const menuBtn = $(".menu-btn"), links = $("#nav-links");
+  menuBtn.addEventListener("click", () => {
+    const open = links.classList.toggle("open");
+    menuBtn.setAttribute("aria-expanded", open);
+    menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  });
+  $$("#nav-links a").forEach(a => a.addEventListener("click", () => {
+    links.classList.remove("open"); menuBtn.setAttribute("aria-expanded", "false");
+  }));
+
+  // Generic tab wiring
+  function wireTabs(listSel, key, render) {
+    $$(listSel + " .tab").forEach(tab => tab.addEventListener("click", () => {
+      $$(listSel + " .tab").forEach(t => t.setAttribute("aria-selected", "false"));
+      tab.setAttribute("aria-selected", "true");
+      render(tab.dataset[key]);
+    }));
+  }
+
+  // Subjects
+  const chips = arr => `<ul class="course-list">${arr.map(c => `<li class="chip">${esc(c)}</li>`).join("")}</ul>`;
+  function renderSubject(key) {
+    const s = SUBJECTS[key];
+    let html = `
+      <div class="subject-grid">
+        <div class="panel">
+          <h3>Canadian provincial curricula</h3>
+          <p>Grades 8 to 12, matched to your province's courses.</p>
+          <ul class="provinces">
+            ${PROVINCES.map(p => `
+              <li>
+                <div class="prov-head"><strong>${esc(p.name)}</strong><small>${esc(p.diploma)}</small></div>
+                <p>${esc(s.canada[p.id] || "")}</p>
+              </li>`).join("")}
+          </ul>
+        </div>
+        <div class="side">
+          <div class="panel"><h3>Advanced Placement (AP)</h3><p>College Board courses and exam prep.</p>${chips(s.ap)}</div>
+          <div class="panel"><h3>International Baccalaureate (IB)</h3><p>Diploma Programme courses, including IA and exam prep.</p>${chips(s.ib)}</div>
+        </div>
+      </div>`;
+    if (s.extra) {
+      html += `
+        <div class="extra">
+          <div><h3>${esc(s.extra.title)}</h3><p>${esc(s.extra.text)}</p></div>
+          <ul class="tracks">${s.extra.tracks.map(t => `<li><b>${esc(t.name)}</b><span>${esc(t.desc)}</span></li>`).join("")}</ul>
+        </div>`;
+    }
+    $("#subject-panel").innerHTML = html;
+  }
+  wireTabs("#subject-tabs", "subject", renderSubject);
+  renderSubject("math");
+
+  // Study guides
+  let activeFilter = "all";
+  const guideCount = GUIDES.reduce((n, g) => n + (g.topics ? g.topics.length : 1), 0);
+  function renderGuides() {
+    const q = $("#res-search").value.trim().toLowerCase();
+    const matches = t => !q || t.toLowerCase().includes(q);
+    let shown = 0;
+    const rows = GUIDES.filter(g => activeFilter === "all" || g.group === activeFilter).map(g => {
+      const tag = `<span class="res-tag ${esc(g.tag.toLowerCase())}">${esc(g.tag)}</span>`;
+      if (g.topics) {
+        const titleHit = matches(g.title + " " + g.tag);
+        const topics = g.topics.filter(t => titleHit || matches(t.name));
+        if (!topics.length) return "";
+        shown += topics.length;
+        return `<li class="res-multi">
+          <div class="res-row"><span class="res-name">${esc(g.title)}</span>${tag}</div>
+          <ul class="res-topics">${topics.map(t => `<li><a href="${esc(t.url)}" target="_blank" rel="noopener">${esc(t.name)}<svg aria-hidden="true"><use href="#i-open"/></svg></a></li>`).join("")}</ul>
+        </li>`;
+      }
+      if (!matches(g.title + " " + g.tag)) return "";
+      shown++;
+      return `<li><a href="${esc(g.url)}" target="_blank" rel="noopener">
+          <span class="res-name">${esc(g.title)}</span>${tag}
+          <svg class="res-open" aria-hidden="true"><use href="#i-open"/></svg>
+        </a></li>`;
+    }).filter(Boolean);
+    $("#res-list").innerHTML = rows.length ? rows.join("")
+      : `<li class="res-empty">No guides match "${esc(q)}". Try a course name like "Physics", or <a href="https://forms.gle/yePxF1p6JSNqcd8R8" target="_blank" rel="noopener">ask a tutor</a> instead.</li>`;
+    $("#res-count").textContent = `Showing ${shown} of ${guideCount} guides. All open in Google Docs.`;
+  }
+  $$(".filter").forEach(btn => btn.addEventListener("click", () => {
+    $$(".filter").forEach(b => b.setAttribute("aria-pressed", "false"));
+    btn.setAttribute("aria-pressed", "true");
+    activeFilter = btn.dataset.filter; renderGuides();
+  }));
+  $("#res-search").addEventListener("input", renderGuides);
+  renderGuides();
+
+  // Stats + testimonials (placeholders when empty)
+  $("#stats").innerHTML = STATS.length
+    ? STATS.map(s => `<div class="stat"><b>${esc(s.value)}</b><span>${esc(s.label)}</span></div>`).join("")
+    : Array.from({ length: STAT_SLOTS }, (_, i) => `<div class="ph">Stat ${i + 1}</div>`).join("");
+  $("#quotes").innerHTML = TESTIMONIALS.length
+    ? TESTIMONIALS.map(t => `<figure class="quote"><blockquote>"${esc(t.quote)}"</blockquote><figcaption>${esc(t.who)}</figcaption></figure>`).join("")
+    : Array.from({ length: TESTIMONIAL_SLOTS }, (_, i) => `<div class="ph">Testimonial ${i + 1}</div>`).join("");
+
+  // Team
+  const initials = n => n.split(" ").map(p => p[0]).slice(0, 2).join("");
+  function renderTeam(group) {
+    $("#people").innerHTML = TEAM[group].map(p => `
+      <li class="person">
+        <div class="avatar">${p.photo ? `<img src="${esc(p.photo)}" alt="" loading="lazy">` : esc(initials(p.name))}</div>
+        <h3>${esc(p.name)}</h3>
+        <p>${esc(p.role)}</p>
+      </li>`).join("");
+  }
+  wireTabs("#team-tabs", "group", renderTeam);
+  renderTeam("exec");
+
+  // Highlight current section in nav
+  const navMap = new Map($$('.nav-links a[href^="#"]').map(a => [a.getAttribute("href").slice(1), a]));
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        const link = navMap.get(e.target.id);
+        if (link && e.isIntersecting) { navMap.forEach(l => l.classList.remove("is-active")); link.classList.add("is-active"); }
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    navMap.forEach((_, id) => { const s = document.getElementById(id); if (s) io.observe(s); });
+  }
+
+  $("#year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
