@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Team | Pacific Education Network</title>
+  <meta name="description" content="Meet the students who run Pacific Education Network's tutoring, study guides, and operations.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231D4ED8'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="wrap nav" aria-label="Main">
+    <a class="brand" href="index.html" aria-label="Pacific Education Network, home">
+      <span class="logo-slot" aria-hidden="true">LOGO</span>
+      <span>PEN<small>Pacific Education Network</small></span>
+    </a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="tutoring.html">Tutoring</a></li>
+      <li><a href="study-guides.html">Study guides</a></li>
+      <li><a href="team.html" class="is-active" aria-current="page">Team</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="apply.html">Apply</a></li>
+      <li><a class="btn btn-primary" href="https://forms.gle/yePxF1p6JSNqcd8R8" target="_blank" rel="noopener">Find a tutor</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <div class="wrap page-head">
+    <h1>Meet the team</h1>
+    <p class="lede">Our executives run scheduling, quality, communications, and tech. Our tutors bring the lessons and guides to life.</p>
+  </div>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="tabs" role="tablist" aria-label="Team groups" id="team-tabs">
+        <button class="tab" role="tab" aria-selected="true"  data-group="exec">Executive board</button>
+        <button class="tab" role="tab" aria-selected="false" data-group="math">Math</button>
+        <button class="tab" role="tab" aria-selected="false" data-group="science">Sciences</button>
+        <button class="tab" role="tab" aria-selected="false" data-group="languages">Languages</button>
+      </div>
+      <ul class="people" id="people" role="tabpanel"></ul>
+      <p class="team-note">Want to join them? <a href="apply.html">Apply to tutor</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:.9rem">
+          <span class="logo-slot" aria-hidden="true">LOGO</span>
+          <span>PEN<small>Pacific Education Network</small></span>
+        </a>
+        <p>Better access to education, free for everyone. Vancouver, BC.</p>
+        <!-- TODO: add your contact email here -->
+      </div>
+      <div>
+        <h4>Get started</h4>
+        <ul>
+          <li><a href="https://forms.gle/yePxF1p6JSNqcd8R8" target="_blank" rel="noopener">Find a tutor</a></li>
+          <li><a href="study-guides.html">Study guides</a></li>
+          <li><a href="apply.html">Apply to teach</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Follow us</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/pacific.education_network" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://xhslink.com/m/A9ECkX1AAiS" target="_blank" rel="noopener">RedNote (小红书)</a></li>
+          <li><a href="https://www.youtube.com/channel/UC0TZGQO3O-BkHHsrfI8_abQ" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://linktr.ee/pacific.education_network" target="_blank" rel="noopener">All links</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; <span id="year">2026</span> Pacific Education Network. All rights reserved.</span>
+      <a href="#" style="text-decoration:none">Privacy policy</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js" defer></script>
+<script>
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+  /* =========================================================
+     EDIT HERE: team. photo: "assets/team/first-last.webp" or "" for initials
+     ========================================================= */
+  const TEAM = {
+    exec: [
+      { name: "Yicheng Yang", role: "Founder & President", photo: "" },
+      { name: "Sam Wang", role: "Co-Founder & Vice President", photo: "" },
+      { name: "Ayden Leung", role: "Director of Quality Assurance", photo: "" },
+      { name: "Alisa Du", role: "Director of Communications", photo: "" },
+      { name: "Ben Fung", role: "Director of Academics", photo: "" },
+      { name: "Lucas Moss", role: "Director of Technology", photo: "" }
+    ],
+    math: [
+      { name: "Hyobeen Ahn", role: "Math", photo: "" },
+      { name: "Amir Shekari", role: "Math", photo: "" },
+      { name: "Lucy Dong", role: "Math", photo: "" },
+      { name: "Anushka Mukherjee", role: "Math & English", photo: "" },
+      { name: "Meghan Sandhu", role: "Math", photo: "" },
+      { name: "Ethan Fu", role: "Math", photo: "" }
+    ],
+    science: [
+      { name: "Emad Badei", role: "Biology", photo: "" },
+      { name: "Ayesha Klair", role: "Biology", photo: "" },
+      { name: "Matt Chong", role: "Physics", photo: "" }
+    ],
+    languages: [
+      { name: "James Lin", role: "English", photo: "" },
+      { name: "Gillian Xie", role: "English", photo: "" },
+      { name: "Emma Jia", role: "English", photo: "" },
+      { name: "Mike Zhang", role: "English", photo: "" },
+      { name: "Amy Lu", role: "English", photo: "" },
+      { name: "Chloe Fu", role: "English", photo: "" },
+      { name: "Anushka Mukherjee", role: "Math & English", photo: "" },
+      { name: "Jahnavi Bhosale", role: "English", photo: "" },
+      { name: "Brianna Barbucci", role: "French", photo: "" }
+    ]
+  };
+
+  const initials = n => n.split(" ").map(p => p[0]).slice(0, 2).join("");
+  function renderTeam(group) {
+    $("#people").innerHTML = TEAM[group].map(p => `
+      <li class="person">
+        <div class="avatar">${p.photo ? `<img src="${esc(p.photo)}" alt="" loading="lazy">` : esc(initials(p.name))}</div>
+        <h3>${esc(p.name)}</h3>
+        <p>${esc(p.role)}</p>
+      </li>`).join("");
+  }
+  $$("#team-tabs .tab").forEach(tab => tab.addEventListener("click", () => {
+    $$("#team-tabs .tab").forEach(t => t.setAttribute("aria-selected", "false"));
+    tab.setAttribute("aria-selected", "true");
+    renderTeam(tab.dataset.group);
+  }));
+  renderTeam("exec");
+</script>
+</body>
+</html>

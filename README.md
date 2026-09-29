@@ -1,41 +1,51 @@
 # Pacific Education Network website
 
-A single-page, mobile-friendly site for PEN. Everything (HTML, CSS, JS) lives in `index.html`, so there is no build step.
+A mobile-friendly, multi-page site for PEN. No build step — every page is plain HTML that links to a shared `assets/styles.css` and `assets/site.js`.
+
+## Pages
+
+- `index.html` — Home. Hero, the three entry paths, and impact stats/testimonials (placeholders for now).
+- `tutoring.html` — Subject explorer (provincial, AP, IB courses) and "how it works" steps.
+- `study-guides.html` — Searchable, filterable study-guide library.
+- `team.html` — Team tabs by group.
+- `about.html` — Mission, vision, and quick facts.
+- `apply.html` — Request a tutor / apply to teach, plus "how it works".
+- `assets/styles.css` — All shared styles (design tokens, layout, components).
+- `assets/site.js` — Shared behaviour: mobile menu toggle, footer year.
+
+Each page also has its own small inline `<script>` block for the data specific to that page (subjects, guides, team, stats).
 
 ## Deploy on GitHub Pages
 
-1. Create a repo (for example `pen-website`) and upload `index.html` and this README.
+1. Push all files (the HTML pages, `assets/`, and this README) to your repo.
 2. Go to **Settings > Pages**, set **Source** to "Deploy from a branch", pick `main` and `/ (root)`, then save.
-3. The site goes live at `https://<your-username>.github.io/pen-website/` within a minute or two.
-4. To keep `pen-tutoring.org`, enter it under **Settings > Pages > Custom domain** and update your DNS records as GitHub describes (an A record set for the apex domain, or a CNAME for `www`).
+3. The site goes live at `https://<your-username>.github.io/<repo>/` within a minute or two.
+4. To keep a custom domain, enter it under **Settings > Pages > Custom domain** and update your DNS records as GitHub describes (an A record set for the apex domain, or a CNAME for `www`).
 
 ## Editing content
 
-Everything you will update regularly lives in the data blocks near the bottom of `index.html`:
-
-- `PROVINCES`: the provinces shown in every subject tab. Add one (for example Quebec) by adding a line here, then a matching course line under each subject.
-- `SUBJECTS`: for each of math, science, english and french, the provincial courses (`canada`), the `ap` list and the `ib` list. Trim or add courses to match what your tutors can teach. The English tab also has the `extra` block for the international three-track program.
-- `GUIDES`: one line per study guide. Name IB guides `IB <Subject> SL/HL` and standard courses by subject and grade (`Pre-Calculus 11`). `tag` is `IB`, `AP` or `Standard`; `group` is `math`, `science`, `humanities` or `skills`. For a course with several topic guides (like IB History), use `topics: [{ name, url }]` instead of `url` and they show as links under one row.
-- `STATS`: empty for now, so the site shows placeholder boxes. Fill it like `{ value: "250+", label: "students tutored" }`.
-- `TESTIMONIALS`: same idea, `{ quote: "...", who: "Parent of a Grade 10 student" }`.
-- `TEAM`: people per tab. For photos, create `assets/team/` and set `photo: "assets/team/first-last.webp"`. Leave `photo: ""` to show initials.
+- **Home stats/testimonials** — `STATS` and `TESTIMONIALS` near the bottom of `index.html`. Empty arrays show placeholder boxes; fill like `{ value: "250+", label: "students tutored" }` or `{ quote: "...", who: "Parent of a Grade 10 student" }`.
+- **Tutoring subjects** — `PROVINCES` and `SUBJECTS` near the bottom of `tutoring.html`. `SUBJECTS` holds, per subject, the provincial courses (`canada`), the `ap` list and the `ib` list. The English subject also has an `extra` block for the international three-track program.
+- **Study guides** — `GUIDES` near the bottom of `study-guides.html`. One entry per guide. Name IB guides `IB <Subject> SL/HL` and standard courses by subject and grade (`Pre-Calculus 11`). `tag` is `IB`, `AP` or `Standard`; `group` is `math`, `science`, `humanities` or `skills`. For a guide with several parts (like IB History), use `topics: [{ name, url }]` instead of `url`.
+- **Team** — `TEAM` near the bottom of `team.html`, grouped by tab. For photos, create `assets/team/` and set `photo: "assets/team/first-last.webp"`. Leave `photo: ""` to show initials.
+- **About** — mission, vision, and facts list are plain HTML directly in `about.html`.
 
 ### Adding the logo
 
-Search `index.html` for `logo-slot`. There are two (header and footer). Replace each
+Search each page for `logo-slot` (there's one in the header, one in the footer, on every page). Replace
 `<span class="logo-slot" aria-hidden="true">LOGO</span>` with
 `<img class="logo" src="assets/logo.png" alt="">` and put your file in `assets/`.
-Also swap the favicon line near the top (marked `TODO`).
+Also swap the favicon `<link rel="icon" ...>` line near the top of each page (marked `TODO`).
 
 ### Other things to check
 
-- Google Form links appear in several places; search for `forms.gle` to change them all.
-- Add your contact email where the `TODO` comment sits in the footer.
+- Google Form links appear on several pages; search for `forms.gle` to change them all.
+- Add your contact email where the `TODO` comment sits in each page's footer.
 - The "Privacy policy" link in the footer points to `#`; replace it with your real policy page.
 
 ## Features
 
-- Sticky header with a slide-down menu on phones
+- Sticky header with a slide-down menu on phones, shared across all pages
 - Three quick entry points: get a tutor, use the guides, apply to teach
 - Subject explorer with provincial, AP and IB courses per subject
 - Searchable, filterable study-guide library
