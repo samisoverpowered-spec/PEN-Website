@@ -27,7 +27,7 @@
 <header class="site-header">
   <nav class="wrap nav" aria-label="Main">
     <a class="brand" href="index.html" aria-label="Pacific Education Network, home">
-      <span class="logo-slot" aria-hidden="true">LOGO</span>
+      <img class="logo" src="assets/logo.png" alt="">
       <span>PEN<small>Pacific Education Network</small></span>
     </a>
     <button class="menu-btn" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
@@ -110,6 +110,7 @@
       <div class="stats" id="stats"></div>
 
       <h3 class="quotes-head">What students and families say</h3>
+      <div class="chat-testimonial" id="chat-testimonial"></div>
       <div class="quotes" id="quotes"></div>
     </div>
   </section>
@@ -136,7 +137,7 @@
     <div class="foot-grid">
       <div>
         <a class="brand" href="index.html" style="margin-bottom:.9rem">
-          <span class="logo-slot" aria-hidden="true">LOGO</span>
+          <img class="logo" src="assets/logo.png" alt="">
           <span>PEN<small>Pacific Education Network</small></span>
         </a>
         <p>Better access to education, free for everyone. Vancouver, BC.</p>
@@ -180,18 +181,60 @@
   const STAT_SLOTS = 4;
 
   /* =========================================================
-     EDIT HERE: testimonials (empty = placeholder boxes)
+     EDIT HERE: a single featured chat-style testimonial.
+     Set to null to hide this block entirely.
+     messages: each is either { from: "them"|"us", zh, en } or { time: "..." } for a timestamp divider.
+     ========================================================= */
+  const CHAT_TESTIMONIAL = {
+    pulls: ["“It's free”", "“I am so grateful for you guys”"],
+    caption: "A parent, over WeChat",
+    messages: [
+      { from: "them", zh: "好的，我试一下", en: "Okay, I'll give it a try" },
+      { from: "them", zh: "哦，麻烦你先告诉我一下收费吧，如果收费特别不合适的话，我也就不试了，也不占用你们时间", en: "Oh, could you tell me the fee first? If it's really not affordable I won't try it, so I don't take up your time" },
+      { from: "us", zh: "我们不收费", en: "We don't charge" },
+      { from: "us", zh: "永远不收费", en: "Never will" },
+      { from: "us", zh: "我们都是义工，我创造这个也是为了免费给大家提供这个服务", en: "We're all volunteers — I created this to give everyone this service for free" },
+      { time: "6:40 PM" },
+      { from: "them", zh: "真的吗？太感动啦！", en: "Really? That's so touching!" },
+      { from: "us", zh: "真的真的，我们的目的就是免费给大家提供的，谢谢您的支持！", en: "Really, truly — our goal is to provide this for free to everyone. Thank you for your support!" }
+    ]
+  };
+
+  /* =========================================================
+     EDIT HERE: text testimonials (empty = placeholder boxes)
      e.g. { quote: "...", who: "Parent of a Grade 10 student" }
      ========================================================= */
-  const TESTIMONIALS = [];
+  const TESTIMONIALS = [
+    { quote: "Tutor Mike is the coolest teacher!", who: "Student" }
+  ];
   const TESTIMONIAL_SLOTS = 3;
 
   $("#stats").innerHTML = STATS.length
     ? STATS.map(s => `<div class="stat"><b>${esc(s.value)}</b><span>${esc(s.label)}</span></div>`).join("")
     : Array.from({ length: STAT_SLOTS }, (_, i) => `<div class="ph">Stat ${i + 1}</div>`).join("");
-  $("#quotes").innerHTML = TESTIMONIALS.length
-    ? TESTIMONIALS.map(t => `<figure class="quote"><blockquote>"${esc(t.quote)}"</blockquote><figcaption>${esc(t.who)}</figcaption></figure>`).join("")
-    : Array.from({ length: TESTIMONIAL_SLOTS }, (_, i) => `<div class="ph">Testimonial ${i + 1}</div>`).join("");
+
+  if (CHAT_TESTIMONIAL) {
+    const rows = CHAT_TESTIMONIAL.messages.map(m => {
+      if (m.time) return `<div class="chat-time">${esc(m.time)}</div>`;
+      return `<div class="chat-row ${m.from === "us" ? "out" : "in"}">
+        <div class="chat-bubble-wrap">
+          <span class="chat-bubble">${esc(m.zh)}</span>
+          <div class="chat-translation">${esc(m.en)}</div>
+        </div>
+      </div>`;
+    }).join("");
+    $("#chat-testimonial").innerHTML = `
+      <div class="chat-pulls">
+        <blockquote>${esc(CHAT_TESTIMONIAL.pulls[0])}</blockquote>
+        <blockquote>${esc(CHAT_TESTIMONIAL.pulls[1])}</blockquote>
+        <p class="chat-caption">${esc(CHAT_TESTIMONIAL.caption)}</p>
+      </div>
+      <div class="chat-thread">${rows}</div>`;
+  }
+
+  $("#quotes").innerHTML = (TESTIMONIALS.map(t => `<figure class="quote"><blockquote>"${esc(t.quote)}"</blockquote><figcaption>${esc(t.who)}</figcaption></figure>`)
+    .concat(Array.from({ length: TESTIMONIAL_SLOTS }, (_, i) => `<div class="ph">Testimonial ${TESTIMONIALS.length + i + 1}</div>`))
+  ).join("");
 </script>
 </body>
 </html>
