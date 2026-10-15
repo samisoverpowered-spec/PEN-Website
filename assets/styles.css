@@ -278,6 +278,15 @@ p { margin: 0; }
 .stat { padding: 1.4rem 0; border-top: 2px solid var(--ink); }
 .stat b { display: block; font-family: var(--serif); font-weight: 500; font-size: clamp(2.2rem, 4vw, 3rem); line-height: 1.05; color: var(--blue); }
 .stat span { color: var(--ink-soft); }
+.stat b { font-variant-numeric: tabular-nums; }
+.stats.is-armed .stat { transition: opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); transition-delay: calc(var(--i, 0) * 150ms); }
+.stats.is-armed .stat:not(.in) { opacity: 0; transform: translateY(16px); }
+.stats.is-armed .stat::before {
+  content: ""; display: block; height: 2px; background: var(--blue); margin: calc(-1.4rem - 2px) 0 calc(1.4rem - 2px);
+  transform-origin: left; transform: scaleX(0); transition: transform 1.2s cubic-bezier(.2,.7,.2,1);
+  transition-delay: calc(var(--i, 0) * 150ms + 200ms);
+}
+.stats.is-armed .stat.in::before { transform: scaleX(1); }
 .stats .ph { min-height: 130px; }
 @media (max-width: 760px) { .stats { grid-template-columns: 1fr 1fr; } }
 

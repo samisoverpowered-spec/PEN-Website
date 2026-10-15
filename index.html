@@ -175,9 +175,15 @@
 
   /* =========================================================
      EDIT HERE: stats (empty = placeholder boxes)
-     e.g. { value: "250+", label: "students tutored" }
+     value is a plain number; it counts up from 0 when scrolled into view.
+     e.g. { value: 250, prefix: "", suffix: "+", label: "students tutored" }
      ========================================================= */
-  const STATS = [];
+  const STATS = [
+    { value: 1200,  suffix: "+",  label: "hours of tutoring dedicated" },
+    { value: 60000, prefix: "$", suffix: "+", label: "CAD saved for families, compared to $50/hour tutoring" },
+    { value: 300,   label: "students tutored" },
+    { value: 40,    label: "tutors on our team" }
+  ];
   const STAT_SLOTS = 4;
 
   /* =========================================================
@@ -209,9 +215,39 @@
   ];
   const TESTIMONIAL_SLOTS = 3;
 
+  const fmtStat = (s, n) => (s.prefix || "") + Math.round(n).toLocaleString("en-US") + (s.suffix || "");
   $("#stats").innerHTML = STATS.length
-    ? STATS.map(s => `<div class="stat"><b>${esc(s.value)}</b><span>${esc(s.label)}</span></div>`).join("")
+    ? STATS.map((s, i) => `<div class="stat" style="--i:${i}"><b aria-label="${esc(fmtStat(s, s.value))}">${esc(fmtStat(s, s.value))}</b><span>${esc(s.label)}</span></div>`).join("")
     : Array.from({ length: STAT_SLOTS }, (_, i) => `<div class="ph">Stat ${i + 1}</div>`).join("");
+
+  if (STATS.length) {
+    const statEls = [...document.querySelectorAll("#stats .stat")];
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const countUp = (el, s, delay) => {
+      const b = el.querySelector("b");
+      const dur = 1800;
+      let start = null;
+      const tick = t => {
+        if (start === null) start = t + delay;
+        const p = Math.min(1, Math.max(0, (t - start) / dur));
+        b.textContent = fmtStat(s, s.value * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      b.textContent = fmtStat(s, 0);
+      requestAnimationFrame(tick);
+    };
+    if (reduce || !("IntersectionObserver" in window)) {
+      statEls.forEach(el => el.classList.add("in"));
+    } else {
+      $("#stats").classList.add("is-armed");
+      const io = new IntersectionObserver(entries => {
+        if (!entries.some(e => e.isIntersecting)) return;
+        statEls.forEach((el, i) => { el.classList.add("in"); countUp(el, STATS[i], i * 150); });
+        io.disconnect();
+      }, { threshold: 0.4 });
+      io.observe($("#stats"));
+    }
+  }
 
   if (CHAT_TESTIMONIAL) {
     const rows = CHAT_TESTIMONIAL.messages.map(m => {
