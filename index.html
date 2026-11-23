@@ -108,6 +108,7 @@
         <p class="lede">Every session and every guide is free. Here is what that adds up to.</p>
       </div>
       <div class="stats" id="stats"></div>
+      <p class="stats-note">Estimates since our founding in May 2025, assuming about six weekly sessions per student. *Most private tutors in Canada charge $30 to $80 an hour, and Vancouver runs above the national range (<a href="https://biller.ca/pricing-guides/how-much-to-charge-tutoring-canada" target="_blank" rel="noopener">Biller.ca, 2026</a>).</p>
 
       <h3 class="quotes-head">What students and families say</h3>
       <div class="chat-testimonial" id="chat-testimonial"></div>
@@ -179,10 +180,12 @@
      e.g. { value: 250, prefix: "", suffix: "+", label: "students tutored" }
      ========================================================= */
   const STATS = [
-    { value: 1200,  suffix: "+",  label: "hours of tutoring dedicated" },
-    { value: 60000, prefix: "$", suffix: "+", label: "CAD saved for families, compared to $50/hour tutoring" },
-    { value: 300,   label: "students tutored" },
-    { value: 40,    label: "tutors on our team" }
+    /* hours: 467 one-on-one students + 4 five-student classes, ~6 weekly 1-hour sessions each = 2,826 */
+    { value: 2800,   suffix: "+", label: "hours of tutoring dedicated" },
+    /* 2,826 tutor hours x $40/hour = $113,040 */
+    { value: 110000, prefix: "$", suffix: "+", label: "CAD saved for families, at a conservative $40/hour*" },
+    { value: 487,   label: "students tutored, and counting" },
+    { value: 40,    label: "person team of tutors and executives" }
   ];
   const STAT_SLOTS = 4;
 

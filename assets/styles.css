@@ -279,6 +279,8 @@ p { margin: 0; }
 .stat b { display: block; font-family: var(--serif); font-weight: 500; font-size: clamp(2.2rem, 4vw, 3rem); line-height: 1.05; color: var(--blue); }
 .stat span { color: var(--ink-soft); }
 .stat b { font-variant-numeric: tabular-nums; }
+.stats-note { margin-top: 1.25rem; font-size: .85rem; color: var(--ink-soft); max-width: 46rem; }
+.stats-note a { color: var(--blue); }
 .stats.is-armed .stat { transition: opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); transition-delay: calc(var(--i, 0) * 150ms); }
 .stats.is-armed .stat:not(.in) { opacity: 0; transform: translateY(16px); }
 .stats.is-armed .stat::before {
