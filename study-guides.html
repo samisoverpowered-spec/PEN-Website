@@ -116,10 +116,10 @@
   const GUIDES = [
     { title: "Pre-Calculus 11",        tag: "Standard", group: "math",       url: "https://dub.sh/Sc8uNxn" },
     { title: "Pre-Calculus 12",        tag: "Standard", group: "math",       url: "https://ggl.link/TAHVqlf" },
-    { title: "IB Math AA SL/HL",       tag: "IB",       group: "math",       url: "https://ggl.link/x5gT7uG" },
+    { title: "IB Math AA SL/HL (2021)", tag: "IB",      group: "math",       url: "assets/guides/ib-math-aa-sl-hl-2021.pdf" },
     { title: "IB Biology SL/HL",       tag: "IB",       group: "science",    url: "https://ggl.link/yKJgBuP" },
-    { title: "IB Chemistry SL/HL",     tag: "IB",       group: "science",    url: "https://ggl.link/N1CUTqo" },
-    { title: "IB Physics SL/HL",       tag: "IB",       group: "science",    url: "https://ggl.link/a9nwDzL" },
+    { title: "IB Chemistry SL (2023)", tag: "IB",       group: "science",    url: "assets/guides/ib-chemistry-sl-2023.pdf" },
+    { title: "IB Physics HL (2025)",   tag: "IB",       group: "science",    url: "assets/guides/ib-physics-hl-2025.pdf" },
     { title: "IB Geography SL/HL",     tag: "IB",       group: "humanities", url: "https://ggl.link/jcPiOMi" },
     /* A guide with several parts: use topics instead of url */
     { title: "IB History SL/HL",       tag: "IB",       group: "humanities", topics: [
@@ -162,7 +162,7 @@
     }).filter(Boolean);
     $("#res-list").innerHTML = rows.length ? rows.join("")
       : `<li class="res-empty">No guides match "${esc(q)}". Try a course name like "Physics", or <a href="https://forms.gle/yePxF1p6JSNqcd8R8" target="_blank" rel="noopener">ask a tutor</a> instead.</li>`;
-    $("#res-count").textContent = `Showing ${shown} of ${guideCount} guides. All open in Google Docs.`;
+    $("#res-count").textContent = `Showing ${shown} of ${guideCount} guides. Guides open as a PDF or in Google Docs.`;
   }
   $$(".filter").forEach(btn => btn.addEventListener("click", () => {
     $$(".filter").forEach(b => b.setAttribute("aria-pressed", "false"));

@@ -108,7 +108,7 @@
         <p class="lede">Every session and every guide is free. Here is what that adds up to.</p>
       </div>
       <div class="stats" id="stats"></div>
-      <p class="stats-note">Estimates since our founding in May 2025, assuming about six weekly sessions per student. *Most private tutors in Canada charge $30 to $80 an hour, and Vancouver runs above the national range (<a href="https://biller.ca/pricing-guides/how-much-to-charge-tutoring-canada" target="_blank" rel="noopener">Biller.ca, 2026</a>).</p>
+      <p class="stats-note">Estimates since our founding in May 2025, assuming about six weekly sessions per student. *Most private tutors in Canada charge $30 to $80 an hour, and rates in Vancouver run higher than in smaller markets (<a href="https://biller.ca/pricing-guides/how-much-to-charge-tutoring-canada" target="_blank" rel="noopener">Biller.ca, 2026</a>).</p>
 
       <h3 class="quotes-head">What students and families say</h3>
       <div class="chat-testimonial" id="chat-testimonial"></div>
@@ -196,7 +196,7 @@
      ========================================================= */
   const CHAT_TESTIMONIAL = {
     pulls: ["“It's free”", "“I am so grateful for you guys”"],
-    caption: "A parent, over WeChat",
+    caption: "From a WeChat conversation with PEN",
     messages: [
       { from: "them", zh: "好的，我试一下", en: "Okay, I'll give it a try" },
       { from: "them", zh: "哦，麻烦你先告诉我一下收费吧，如果收费特别不合适的话，我也就不试了，也不占用你们时间", en: "Oh, could you tell me the fee first? If it's really not affordable I won't try it, so I don't take up your time" },
@@ -214,9 +214,12 @@
      e.g. { quote: "...", who: "Parent of a Grade 10 student" }
      ========================================================= */
   const TESTIMONIALS = [
+    { quote: "PEN's system and communication were great. They always kept me updated through setting up with a class and through ways my child could improve.", who: "Ryan B." },
+    { quote: "PEN's resources helped me understand tricky concepts in physics. Their study guides are well organized and easy to follow.", who: "Richard L." },
+    { quote: "Great service, amazing tutors 10/10 boosted my grade ❤️", who: "Sean D., math student" },
     { quote: "Tutor Mike is the coolest teacher!", who: "Student" }
   ];
-  const TESTIMONIAL_SLOTS = 3;
+  const TESTIMONIAL_SLOTS = 0;
 
   const fmtStat = (s, n) => (s.prefix || "") + Math.round(n).toLocaleString("en-US") + (s.suffix || "");
   $("#stats").innerHTML = STATS.length
