@@ -3,14 +3,75 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Pacific Education Network | Free student-led tutoring</title>
-  <meta name="description" content="Pacific Education Network (PEN) is a BC-registered nonprofit offering free one-on-one tutoring and free study guides for Canadian provincial, AP, and IB courses.">
+  <title>Pacific Education Network (PEN) | Free online tutoring in Canada</title>
+  <meta name="description" content="Pacific Education Network (PEN) is a student-run, BC-registered nonprofit in Vancouver offering free one-on-one online tutoring and free study guides for Canadian high school, AP, and IB courses.">
   <link rel="icon" type="image/png" href="assets/favicon.png?v=2">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/styles.css?v=2">
+  <link rel="canonical" href="https://www.pen-tutoring.org/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Pacific Education Network">
+  <meta property="og:title" content="Pacific Education Network (PEN) | Free online tutoring in Canada">
+  <meta property="og:description" content="Pacific Education Network (PEN) is a student-run, BC-registered nonprofit in Vancouver offering free one-on-one online tutoring and free study guides for Canadian high school, AP, and IB courses.">
+  <meta property="og:url" content="https://www.pen-tutoring.org/">
+  <meta property="og:image" content="https://www.pen-tutoring.org/assets/apple-touch-icon.png">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": [
+    "NGO",
+    "EducationalOrganization"
+  ],
+  "@id": "https://www.pen-tutoring.org/#organization",
+  "name": "Pacific Education Network",
+  "alternateName": [
+    "PEN",
+    "PEN Tutoring"
+  ],
+  "url": "https://www.pen-tutoring.org/",
+  "logo": "https://www.pen-tutoring.org/assets/apple-touch-icon.png",
+  "description": "Student-run, BC-registered nonprofit offering free one-on-one online tutoring and free study guides for Canadian provincial, AP, and IB courses.",
+  "foundingDate": "2025-05",
+  "email": "pen.edu45@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Vancouver",
+    "addressRegion": "BC",
+    "addressCountry": "CA"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Canada"
+  },
+  "knowsAbout": [
+    "Math tutoring",
+    "Science tutoring",
+    "English tutoring",
+    "French tutoring",
+    "AP courses",
+    "IB Diploma Programme"
+  ],
+  "makesOffer": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "CAD",
+    "itemOffered": {
+      "@type": "Service",
+      "name": "Free one-on-one online tutoring",
+      "serviceType": "Tutoring",
+      "url": "https://www.pen-tutoring.org/tutoring.html"
+    }
+  },
+  "sameAs": [
+    "https://www.instagram.com/pacific.education_network",
+    "https://www.youtube.com/channel/UC0TZGQO3O-BkHHsrfI8_abQ",
+    "https://linktr.ee/pacific.education_network"
+  ]
+}
+  </script>
 </head>
 <body>
 
@@ -100,19 +161,50 @@
     </div>
   </section>
 
-  <!-- ============ IMPACT (placeholders) ============ -->
+  <!-- ============ IMPACT ============ -->
   <section class="section alt" id="impact">
     <div class="wrap">
       <div class="section-head">
         <h2>Our impact</h2>
         <p class="lede">Every session and every guide is free. Here is what that adds up to.</p>
       </div>
-      <div class="stats" id="stats"></div>
+      <!-- EDIT HERE: stats. Change data-value and the text to match; numbers count up when scrolled into view.
+           Hours: 467 one-on-one students + 4 five-student classes, about 6 one-hour sessions each = 2,826.
+           Saved: 2,826 hours x $40/hour = $113,040. -->
+      <div class="stats" id="stats">
+        <div class="stat" style="--i:0"><b data-value="2800" data-prefix="" data-suffix="+">2,800+</b><span>hours of tutoring dedicated</span></div>
+        <div class="stat" style="--i:1"><b data-value="110000" data-prefix="$" data-suffix="+">$110,000+</b><span>CAD saved for families, at a conservative $40/hour*</span></div>
+        <div class="stat" style="--i:2"><b data-value="487" data-prefix="" data-suffix="">487</b><span>students tutored, and counting</span></div>
+        <div class="stat" style="--i:3"><b data-value="40" data-prefix="" data-suffix="">40</b><span>person team of tutors and executives</span></div>
+      </div>
       <p class="stats-note">Estimates since our founding in May 2025, assuming about six weekly sessions per student. *Most private tutors in Canada charge $30 to $80 an hour, and rates in Vancouver run higher than in smaller markets (<a href="https://biller.ca/pricing-guides/how-much-to-charge-tutoring-canada" target="_blank" rel="noopener">Biller.ca, 2026</a>).</p>
 
       <h3 class="quotes-head">What students and families say</h3>
-      <div class="chat-testimonial" id="chat-testimonial"></div>
-      <div class="quotes" id="quotes"></div>
+      <!-- EDIT HERE: featured chat. "in" = family, "out" = PEN. -->
+      <div class="chat-testimonial" id="chat-testimonial">
+        <div class="chat-pulls">
+          <blockquote>“It's free”</blockquote>
+          <blockquote>“I am so grateful for you guys”</blockquote>
+          <p class="chat-caption">From a WeChat conversation with PEN</p>
+        </div>
+        <div class="chat-thread">
+          <div class="chat-row in"><div class="chat-bubble-wrap"><span class="chat-bubble" lang="zh">好的，我试一下</span><div class="chat-translation">Okay, I'll give it a try</div></div></div>
+          <div class="chat-row in"><div class="chat-bubble-wrap"><span class="chat-bubble" lang="zh">哦，麻烦你先告诉我一下收费吧，如果收费特别不合适的话，我也就不试了，也不占用你们时间</span><div class="chat-translation">Oh, could you tell me the fee first? If it's really not affordable I won't try it, so I don't take up your time</div></div></div>
+          <div class="chat-row out"><div class="chat-bubble-wrap"><span class="chat-bubble" lang="zh">我们不收费</span><div class="chat-translation">We don't charge</div></div></div>
+          <div class="chat-row out"><div class="chat-bubble-wrap"><span class="chat-bubble" lang="zh">永远不收费</span><div class="chat-translation">Never will</div></div></div>
+          <div class="chat-row out"><div class="chat-bubble-wrap"><span class="chat-bubble" lang="zh">我们都是义工，我创造这个也是为了免费给大家提供这个服务</span><div class="chat-translation">We're all volunteers — I created this to give everyone this service for free</div></div></div>
+          <div class="chat-time">6:40 PM</div>
+          <div class="chat-row in"><div class="chat-bubble-wrap"><span class="chat-bubble" lang="zh">真的吗？太感动啦！</span><div class="chat-translation">Really? That's so touching!</div></div></div>
+          <div class="chat-row out"><div class="chat-bubble-wrap"><span class="chat-bubble" lang="zh">真的真的，我们的目的就是免费给大家提供的，谢谢您的支持！</span><div class="chat-translation">Really, truly — our goal is to provide this for free to everyone. Thank you for your support!</div></div></div>
+        </div>
+      </div>
+      <!-- EDIT HERE: text testimonials -->
+      <div class="quotes" id="quotes">
+        <figure class="quote"><blockquote>"PEN's system and communication were great. They always kept me updated through setting up with a class and through ways my child could improve."</blockquote><figcaption>Ryan B.</figcaption></figure>
+        <figure class="quote"><blockquote>"The resources helped me understand tricky concepts in physics. Their study guides provide extensive coverage and are comprehensive."</blockquote><figcaption>Richard L.</figcaption></figure>
+        <figure class="quote"><blockquote>"Great service, amazing tutors 10/10 boosted my grade ❤️"</blockquote><figcaption>Sean D., math student</figcaption></figure>
+        <figure class="quote"><blockquote>"Tutor Mike is the coolest teacher!"</blockquote><figcaption>Gigi</figcaption></figure>
+      </div>
     </div>
   </section>
 
@@ -171,112 +263,31 @@
 
 <script src="assets/site.js" defer></script>
 <script>
-  const $ = (s, el = document) => el.querySelector(s);
-  const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-
-  /* =========================================================
-     EDIT HERE: stats (empty = placeholder boxes)
-     value is a plain number; it counts up from 0 when scrolled into view.
-     e.g. { value: 250, prefix: "", suffix: "+", label: "students tutored" }
-     ========================================================= */
-  const STATS = [
-    /* hours: 467 one-on-one students + 4 five-student classes, ~6 weekly 1-hour sessions each = 2,826 */
-    { value: 2800,   suffix: "+", label: "hours of tutoring dedicated" },
-    /* 2,826 tutor hours x $40/hour = $113,040 */
-    { value: 110000, prefix: "$", suffix: "+", label: "CAD saved for families, at a conservative $40/hour*" },
-    { value: 487,   label: "students tutored, and counting" },
-    { value: 40,    label: "person team of tutors and executives" }
-  ];
-  const STAT_SLOTS = 4;
-
-  /* =========================================================
-     EDIT HERE: a single featured chat-style testimonial.
-     Set to null to hide this block entirely.
-     messages: each is either { from: "them"|"us", zh, en } or { time: "..." } for a timestamp divider.
-     ========================================================= */
-  const CHAT_TESTIMONIAL = {
-    pulls: ["“It's free”", "“I am so grateful for you guys”"],
-    caption: "From a WeChat conversation with PEN",
-    messages: [
-      { from: "them", zh: "好的，我试一下", en: "Okay, I'll give it a try" },
-      { from: "them", zh: "哦，麻烦你先告诉我一下收费吧，如果收费特别不合适的话，我也就不试了，也不占用你们时间", en: "Oh, could you tell me the fee first? If it's really not affordable I won't try it, so I don't take up your time" },
-      { from: "us", zh: "我们不收费", en: "We don't charge" },
-      { from: "us", zh: "永远不收费", en: "Never will" },
-      { from: "us", zh: "我们都是义工，我创造这个也是为了免费给大家提供这个服务", en: "We're all volunteers — I created this to give everyone this service for free" },
-      { time: "6:40 PM" },
-      { from: "them", zh: "真的吗？太感动啦！", en: "Really? That's so touching!" },
-      { from: "us", zh: "真的真的，我们的目的就是免费给大家提供的，谢谢您的支持！", en: "Really, truly — our goal is to provide this for free to everyone. Thank you for your support!" }
-    ]
-  };
-
-  /* =========================================================
-     EDIT HERE: text testimonials (empty = placeholder boxes)
-     e.g. { quote: "...", who: "Parent of a Grade 10 student" }
-     ========================================================= */
-  const TESTIMONIALS = [
-    { quote: "PEN's system and communication were great. They always kept me updated through setting up with a class and through ways my child could improve.", who: "Ryan B." },
-    { quote: "The resources helped me understand tricky concepts in physics. Their study guides provide extensive coverage and are comprehensive.", who: "Richard L." },
-    { quote: "Great service, amazing tutors 10/10 boosted my grade ❤️", who: "Sean D., math student" },
-    { quote: "Tutor Mike is the coolest teacher!", who: "Gigi" }
-  ];
-  const TESTIMONIAL_SLOTS = 0;
-
-  const fmtStat = (s, n) => (s.prefix || "") + Math.round(n).toLocaleString("en-US") + (s.suffix || "");
-  $("#stats").innerHTML = STATS.length
-    ? STATS.map((s, i) => `<div class="stat" style="--i:${i}"><b aria-label="${esc(fmtStat(s, s.value))}">${esc(fmtStat(s, s.value))}</b><span>${esc(s.label)}</span></div>`).join("")
-    : Array.from({ length: STAT_SLOTS }, (_, i) => `<div class="ph">Stat ${i + 1}</div>`).join("");
-
-  if (STATS.length) {
-    const statEls = [...document.querySelectorAll("#stats .stat")];
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const countUp = (el, s, delay) => {
-      const b = el.querySelector("b");
-      const dur = 1800;
-      let start = null;
-      const tick = t => {
-        if (start === null) start = t + delay;
-        const p = Math.min(1, Math.max(0, (t - start) / dur));
-        b.textContent = fmtStat(s, s.value * (1 - Math.pow(1 - p, 3)));
-        if (p < 1) requestAnimationFrame(tick);
-      };
-      b.textContent = fmtStat(s, 0);
-      requestAnimationFrame(tick);
+  const stats = document.getElementById("stats");
+  const statEls = [...stats.querySelectorAll(".stat")];
+  const countUp = (b, delay) => {
+    const { value, prefix, suffix } = b.dataset;
+    const show = n => { b.textContent = prefix + Math.round(n).toLocaleString("en-US") + suffix; };
+    const dur = 1800;
+    let start = null;
+    const tick = t => {
+      if (start === null) start = t + delay;
+      const p = Math.min(1, Math.max(0, (t - start) / dur));
+      show(value * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(tick);
     };
-    if (reduce || !("IntersectionObserver" in window)) {
-      statEls.forEach(el => el.classList.add("in"));
-    } else {
-      $("#stats").classList.add("is-armed");
-      const io = new IntersectionObserver(entries => {
-        if (!entries.some(e => e.isIntersecting)) return;
-        statEls.forEach((el, i) => { el.classList.add("in"); countUp(el, STATS[i], i * 150); });
-        io.disconnect();
-      }, { threshold: 0.4 });
-      io.observe($("#stats"));
-    }
+    show(0);
+    requestAnimationFrame(tick);
+  };
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
+    stats.classList.add("is-armed");
+    const io = new IntersectionObserver(entries => {
+      if (!entries.some(e => e.isIntersecting)) return;
+      statEls.forEach((el, i) => { el.classList.add("in"); countUp(el.querySelector("b"), i * 150); });
+      io.disconnect();
+    }, { threshold: 0.4 });
+    io.observe(stats);
   }
-
-  if (CHAT_TESTIMONIAL) {
-    const rows = CHAT_TESTIMONIAL.messages.map(m => {
-      if (m.time) return `<div class="chat-time">${esc(m.time)}</div>`;
-      return `<div class="chat-row ${m.from === "us" ? "out" : "in"}">
-        <div class="chat-bubble-wrap">
-          <span class="chat-bubble">${esc(m.zh)}</span>
-          <div class="chat-translation">${esc(m.en)}</div>
-        </div>
-      </div>`;
-    }).join("");
-    $("#chat-testimonial").innerHTML = `
-      <div class="chat-pulls">
-        <blockquote>${esc(CHAT_TESTIMONIAL.pulls[0])}</blockquote>
-        <blockquote>${esc(CHAT_TESTIMONIAL.pulls[1])}</blockquote>
-        <p class="chat-caption">${esc(CHAT_TESTIMONIAL.caption)}</p>
-      </div>
-      <div class="chat-thread">${rows}</div>`;
-  }
-
-  $("#quotes").innerHTML = (TESTIMONIALS.map(t => `<figure class="quote"><blockquote>"${esc(t.quote)}"</blockquote><figcaption>${esc(t.who)}</figcaption></figure>`)
-    .concat(Array.from({ length: TESTIMONIAL_SLOTS }, (_, i) => `<div class="ph">Testimonial ${TESTIMONIALS.length + i + 1}</div>`))
-  ).join("");
 </script>
 </body>
 </html>

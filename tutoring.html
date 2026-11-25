@@ -3,14 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Tutoring | Pacific Education Network</title>
-  <meta name="description" content="Free one-on-one tutoring from Pacific Education Network in math, sciences, English and French — Canadian provincial curricula, AP and IB.">
+  <title>Free online tutoring: math, science, English, French | PEN</title>
+  <meta name="description" content="Free one-on-one online tutoring from Pacific Education Network in math, sciences, English, and French for BC, Alberta, Saskatchewan, Manitoba, and Ontario courses, plus AP and IB.">
   <link rel="icon" type="image/png" href="assets/favicon.png?v=2">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/styles.css?v=2">
+  <link rel="canonical" href="https://www.pen-tutoring.org/tutoring.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Pacific Education Network">
+  <meta property="og:title" content="Free online tutoring: math, science, English, French | PEN">
+  <meta property="og:description" content="Free one-on-one online tutoring from Pacific Education Network in math, sciences, English, and French for BC, Alberta, Saskatchewan, Manitoba, and Ontario courses, plus AP and IB.">
+  <meta property="og:url" content="https://www.pen-tutoring.org/tutoring.html">
+  <meta property="og:image" content="https://www.pen-tutoring.org/assets/apple-touch-icon.png">
 </head>
 <body>
 
@@ -54,7 +61,89 @@
         <button class="tab pick" role="tab" aria-selected="false" data-subject="french"><b>French</b><span>Core and immersion</span></button>
       </div>
 
-      <div id="subject-panel" role="tabpanel"></div>
+      <!-- EDIT HERE: courses. One data-panel block per subject tab above. -->
+      <div id="subject-panel">
+        <div role="tabpanel" aria-label="Math" data-panel="math">
+          <div class="subject-grid">
+            <div class="panel">
+              <h3>Canadian provincial curricula</h3>
+              <p>Grades 8 to 12, matched to your province's courses.</p>
+              <ul class="provinces">
+                <li><div class="prov-head"><strong>British Columbia</strong><small>Dogwood Diploma</small></div><p>Math 8 to 10, Pre-Calculus 11 and 12, Foundations of Math 11 and 12, Calculus 12</p></li>
+                <li><div class="prov-head"><strong>Alberta</strong><small>Alberta High School Diploma</small></div><p>Math 10C, Math 20-1 and 30-1, Math 20-2 and 30-2, Math 31</p></li>
+                <li><div class="prov-head"><strong>Saskatchewan</strong><small>Saskatchewan High School Diploma</small></div><p>Foundations of Math and Pre-Calculus 10, Pre-Calculus 20 and 30, Foundations of Math 20 and 30, Calculus 30</p></li>
+                <li><div class="prov-head"><strong>Manitoba</strong><small>Manitoba High School Diploma</small></div><p>Grade 9 and 10 Math, Pre-Calculus Math 30S and 40S, Applied Math 30S and 40S</p></li>
+                <li><div class="prov-head"><strong>Ontario</strong><small>Ontario Secondary School Diploma (OSSD)</small></div><p>Grade 9 Math (MTH1W), Grade 10 Principles (MPM2D), Functions (MCR3U), Advanced Functions (MHF4U), Calculus and Vectors (MCV4U)</p></li>
+              </ul>
+            </div>
+            <div class="side">
+              <div class="panel"><h3>Advanced Placement (AP)</h3><p>College Board courses and exam prep.</p><ul class="course-list"><li class="chip">AP Precalculus</li><li class="chip">AP Calculus AB</li><li class="chip">AP Calculus BC</li><li class="chip">AP Statistics</li></ul></div>
+              <div class="panel"><h3>International Baccalaureate (IB)</h3><p>Diploma Programme courses, including IA and exam prep.</p><ul class="course-list"><li class="chip">Math: Analysis and Approaches SL/HL</li><li class="chip">Math: Applications and Interpretation SL/HL</li></ul></div>
+            </div>
+          </div>
+        </div>
+        <div role="tabpanel" aria-label="Sciences" data-panel="science" hidden>
+          <div class="subject-grid">
+            <div class="panel">
+              <h3>Canadian provincial curricula</h3>
+              <p>Grades 8 to 12, matched to your province's courses.</p>
+              <ul class="provinces">
+                <li><div class="prov-head"><strong>British Columbia</strong><small>Dogwood Diploma</small></div><p>Science 8 to 10, Life Sciences 11, Chemistry 11 and 12, Physics 11 and 12, Anatomy and Physiology 12</p></li>
+                <li><div class="prov-head"><strong>Alberta</strong><small>Alberta High School Diploma</small></div><p>Science 10, Biology 20 and 30, Chemistry 20 and 30, Physics 20 and 30</p></li>
+                <li><div class="prov-head"><strong>Saskatchewan</strong><small>Saskatchewan High School Diploma</small></div><p>Science 9 and 10, Biology 30, Chemistry 20 and 30, Physics 20 and 30</p></li>
+                <li><div class="prov-head"><strong>Manitoba</strong><small>Manitoba High School Diploma</small></div><p>Grade 9 and 10 Science, Biology 30S and 40S, Chemistry 30S and 40S, Physics 30S and 40S</p></li>
+                <li><div class="prov-head"><strong>Ontario</strong><small>Ontario Secondary School Diploma (OSSD)</small></div><p>Grade 9 and 10 Science (SNC1W, SNC2D), Biology (SBI3U, SBI4U), Chemistry (SCH3U, SCH4U), Physics (SPH3U, SPH4U)</p></li>
+              </ul>
+            </div>
+            <div class="side">
+              <div class="panel"><h3>Advanced Placement (AP)</h3><p>College Board courses and exam prep.</p><ul class="course-list"><li class="chip">AP Biology</li><li class="chip">AP Chemistry</li><li class="chip">AP Physics 1</li><li class="chip">AP Physics 2</li></ul></div>
+              <div class="panel"><h3>International Baccalaureate (IB)</h3><p>Diploma Programme courses, including IA and exam prep.</p><ul class="course-list"><li class="chip">Biology SL/HL</li><li class="chip">Chemistry SL/HL</li><li class="chip">Physics SL/HL</li></ul></div>
+            </div>
+          </div>
+        </div>
+        <div role="tabpanel" aria-label="English" data-panel="english" hidden>
+          <div class="subject-grid">
+            <div class="panel">
+              <h3>Canadian provincial curricula</h3>
+              <p>Grades 8 to 12, matched to your province's courses.</p>
+              <ul class="provinces">
+                <li><div class="prov-head"><strong>British Columbia</strong><small>Dogwood Diploma</small></div><p>English Language Arts 8 to 10, Composition 11 and 12, Literary Studies 11 and 12, English Studies 12</p></li>
+                <li><div class="prov-head"><strong>Alberta</strong><small>Alberta High School Diploma</small></div><p>English Language Arts 10-1, 20-1, 30-1 and 10-2, 20-2, 30-2</p></li>
+                <li><div class="prov-head"><strong>Saskatchewan</strong><small>Saskatchewan High School Diploma</small></div><p>English Language Arts A10 and B10, ELA 20, ELA A30 and B30</p></li>
+                <li><div class="prov-head"><strong>Manitoba</strong><small>Manitoba High School Diploma</small></div><p>English Language Arts Grade 9 to 12 (10F to 40S)</p></li>
+                <li><div class="prov-head"><strong>Ontario</strong><small>Ontario Secondary School Diploma (OSSD)</small></div><p>English (ENL1W, ENG2D, ENG3U, ENG4U)</p></li>
+              </ul>
+            </div>
+            <div class="side">
+              <div class="panel"><h3>Advanced Placement (AP)</h3><p>College Board courses and exam prep.</p><ul class="course-list"><li class="chip">AP English Language and Composition</li><li class="chip">AP English Literature and Composition</li></ul></div>
+              <div class="panel"><h3>International Baccalaureate (IB)</h3><p>Diploma Programme courses, including IA and exam prep.</p><ul class="course-list"><li class="chip">English A: Literature SL/HL</li><li class="chip">English A: Language and Literature SL/HL</li><li class="chip">English B SL/HL</li></ul></div>
+            </div>
+          </div>
+          <div class="extra">
+            <div><h3>English for international students</h3><p>A separate three-track program for students learning English as an additional language. Levels are mapped to CEFR and BC ELL benchmarks, so progress is easy to measure.</p></div>
+            <ul class="tracks"><li><b>Speaking and Grammar</b><span>Conversation, pronunciation, and grammar in context</span></li><li><b>Reading Comprehension</b><span>Vocabulary, understanding, and response</span></li><li><b>Writing and Grammar</b><span>Sentence to essay structure and accuracy</span></li></ul>
+          </div>
+        </div>
+        <div role="tabpanel" aria-label="French" data-panel="french" hidden>
+          <div class="subject-grid">
+            <div class="panel">
+              <h3>Canadian provincial curricula</h3>
+              <p>Grades 8 to 12, matched to your province's courses.</p>
+              <ul class="provinces">
+                <li><div class="prov-head"><strong>British Columbia</strong><small>Dogwood Diploma</small></div><p>Core French 8 to 12, Français langue seconde (immersion)</p></li>
+                <li><div class="prov-head"><strong>Alberta</strong><small>Alberta High School Diploma</small></div><p>French as a Second Language 10, 20, 30 and French Language Arts</p></li>
+                <li><div class="prov-head"><strong>Saskatchewan</strong><small>Saskatchewan High School Diploma</small></div><p>Core French 10, 20, 30</p></li>
+                <li><div class="prov-head"><strong>Manitoba</strong><small>Manitoba High School Diploma</small></div><p>Basic French, Français (immersion)</p></li>
+                <li><div class="prov-head"><strong>Ontario</strong><small>Ontario Secondary School Diploma (OSSD)</small></div><p>Core French (FSF) and French Immersion (FIF)</p></li>
+              </ul>
+            </div>
+            <div class="side">
+              <div class="panel"><h3>Advanced Placement (AP)</h3><p>College Board courses and exam prep.</p><ul class="course-list"><li class="chip">AP French Language and Culture</li></ul></div>
+              <div class="panel"><h3>International Baccalaureate (IB)</h3><p>Diploma Programme courses, including IA and exam prep.</p><ul class="course-list"><li class="chip">French B SL/HL</li><li class="chip">French ab initio SL</li></ul></div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="steps-wrap">
         <h3>How it works</h3>
@@ -108,118 +197,12 @@
 
 <script src="assets/site.js" defer></script>
 <script>
-  const $ = (s, el = document) => el.querySelector(s);
-  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
-  const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-
-  /* =========================================================
-     EDIT HERE: provinces (shared by every subject)
-     ========================================================= */
-  const PROVINCES = [
-    { id: "bc", name: "British Columbia", diploma: "Dogwood Diploma" },
-    { id: "ab", name: "Alberta",          diploma: "Alberta High School Diploma" },
-    { id: "sk", name: "Saskatchewan",     diploma: "Saskatchewan High School Diploma" },
-    { id: "mb", name: "Manitoba",         diploma: "Manitoba High School Diploma" },
-    { id: "on", name: "Ontario",          diploma: "Ontario Secondary School Diploma (OSSD)" }
-  ];
-
-  /* =========================================================
-     EDIT HERE: subjects
-     canada: courses per province id (above)
-     ap / ib: courses your tutors are qualified to teach
-     ========================================================= */
-  const SUBJECTS = {
-    math: {
-      canada: {
-        bc: "Math 8 to 10, Pre-Calculus 11 and 12, Foundations of Math 11 and 12, Calculus 12",
-        ab: "Math 10C, Math 20-1 and 30-1, Math 20-2 and 30-2, Math 31",
-        sk: "Foundations of Math and Pre-Calculus 10, Pre-Calculus 20 and 30, Foundations of Math 20 and 30, Calculus 30",
-        mb: "Grade 9 and 10 Math, Pre-Calculus Math 30S and 40S, Applied Math 30S and 40S",
-        on: "Grade 9 Math (MTH1W), Grade 10 Principles (MPM2D), Functions (MCR3U), Advanced Functions (MHF4U), Calculus and Vectors (MCV4U)"
-      },
-      ap: ["AP Precalculus", "AP Calculus AB", "AP Calculus BC", "AP Statistics"],
-      ib: ["Math: Analysis and Approaches SL/HL", "Math: Applications and Interpretation SL/HL"]
-    },
-    science: {
-      canada: {
-        bc: "Science 8 to 10, Life Sciences 11, Chemistry 11 and 12, Physics 11 and 12, Anatomy and Physiology 12",
-        ab: "Science 10, Biology 20 and 30, Chemistry 20 and 30, Physics 20 and 30",
-        sk: "Science 9 and 10, Biology 30, Chemistry 20 and 30, Physics 20 and 30",
-        mb: "Grade 9 and 10 Science, Biology 30S and 40S, Chemistry 30S and 40S, Physics 30S and 40S",
-        on: "Grade 9 and 10 Science (SNC1W, SNC2D), Biology (SBI3U, SBI4U), Chemistry (SCH3U, SCH4U), Physics (SPH3U, SPH4U)"
-      },
-      ap: ["AP Biology", "AP Chemistry", "AP Physics 1", "AP Physics 2"],
-      ib: ["Biology SL/HL", "Chemistry SL/HL", "Physics SL/HL"]
-    },
-    english: {
-      canada: {
-        bc: "English Language Arts 8 to 10, Composition 11 and 12, Literary Studies 11 and 12, English Studies 12",
-        ab: "English Language Arts 10-1, 20-1, 30-1 and 10-2, 20-2, 30-2",
-        sk: "English Language Arts A10 and B10, ELA 20, ELA A30 and B30",
-        mb: "English Language Arts Grade 9 to 12 (10F to 40S)",
-        on: "English (ENL1W, ENG2D, ENG3U, ENG4U)"
-      },
-      ap: ["AP English Language and Composition", "AP English Literature and Composition"],
-      ib: ["English A: Literature SL/HL", "English A: Language and Literature SL/HL", "English B SL/HL"],
-      extra: {
-        title: "English for international students",
-        text: "A separate three-track program for students learning English as an additional language. Levels are mapped to CEFR and BC ELL benchmarks, so progress is easy to measure.",
-        tracks: [
-          { name: "Speaking and Grammar", desc: "Conversation, pronunciation, and grammar in context" },
-          { name: "Reading Comprehension", desc: "Vocabulary, understanding, and response" },
-          { name: "Writing and Grammar", desc: "Sentence to essay structure and accuracy" }
-        ]
-      }
-    },
-    french: {
-      canada: {
-        bc: "Core French 8 to 12, Français langue seconde (immersion)",
-        ab: "French as a Second Language 10, 20, 30 and French Language Arts",
-        sk: "Core French 10, 20, 30",
-        mb: "Basic French, Français (immersion)",
-        on: "Core French (FSF) and French Immersion (FIF)"
-      },
-      ap: ["AP French Language and Culture"],
-      ib: ["French B SL/HL", "French ab initio SL"]
-    }
-  };
-
-  const chips = arr => `<ul class="course-list">${arr.map(c => `<li class="chip">${esc(c)}</li>`).join("")}</ul>`;
-  function renderSubject(key) {
-    const s = SUBJECTS[key];
-    let html = `
-      <div class="subject-grid">
-        <div class="panel">
-          <h3>Canadian provincial curricula</h3>
-          <p>Grades 8 to 12, matched to your province's courses.</p>
-          <ul class="provinces">
-            ${PROVINCES.map(p => `
-              <li>
-                <div class="prov-head"><strong>${esc(p.name)}</strong><small>${esc(p.diploma)}</small></div>
-                <p>${esc(s.canada[p.id] || "")}</p>
-              </li>`).join("")}
-          </ul>
-        </div>
-        <div class="side">
-          <div class="panel"><h3>Advanced Placement (AP)</h3><p>College Board courses and exam prep.</p>${chips(s.ap)}</div>
-          <div class="panel"><h3>International Baccalaureate (IB)</h3><p>Diploma Programme courses, including IA and exam prep.</p>${chips(s.ib)}</div>
-        </div>
-      </div>`;
-    if (s.extra) {
-      html += `
-        <div class="extra">
-          <div><h3>${esc(s.extra.title)}</h3><p>${esc(s.extra.text)}</p></div>
-          <ul class="tracks">${s.extra.tracks.map(t => `<li><b>${esc(t.name)}</b><span>${esc(t.desc)}</span></li>`).join("")}</ul>
-        </div>`;
-    }
-    $("#subject-panel").innerHTML = html;
-  }
-  $$("#subject-tabs .tab").forEach(tab => tab.addEventListener("click", () => {
-    $$("#subject-tabs .tab").forEach(t => t.setAttribute("aria-selected", "false"));
-    tab.setAttribute("aria-selected", "true");
-    renderSubject(tab.dataset.subject);
+  const tabs = [...document.querySelectorAll("#subject-tabs .tab")];
+  const panels = [...document.querySelectorAll("#subject-panel [data-panel]")];
+  tabs.forEach(tab => tab.addEventListener("click", () => {
+    tabs.forEach(t => t.setAttribute("aria-selected", t === tab));
+    panels.forEach(p => { p.hidden = p.dataset.panel !== tab.dataset.subject; });
   }));
-  renderSubject("math");
 </script>
 </body>
 </html>

@@ -4,7 +4,7 @@ A mobile-friendly, multi-page site for PEN. No build step — every page is plai
 
 ## Pages
 
-- `index.html` — Home. Hero, the three entry paths, and impact stats/testimonials (placeholders for now).
+- `index.html` — Home. Hero, the three entry paths, and impact stats and testimonials.
 - `tutoring.html` — Subject explorer (provincial, AP, IB courses) and "how it works" steps.
 - `study-guides.html` — Searchable, filterable study-guide library.
 - `team.html` — Team tabs by group.
@@ -13,7 +13,7 @@ A mobile-friendly, multi-page site for PEN. No build step — every page is plai
 - `assets/styles.css` — All shared styles (design tokens, layout, components).
 - `assets/site.js` — Shared behaviour: mobile menu toggle, footer year.
 
-Each page also has its own small inline `<script>` block for the data specific to that page (subjects, guides, team, stats).
+Page content is plain HTML so search engines and AI assistants can read it without running scripts. Small inline scripts only add behaviour (tabs, filters, counting numbers). The exception is the team list, which is built from data in `team.html`.
 
 ## Deploy on GitHub Pages
 
@@ -24,23 +24,16 @@ Each page also has its own small inline `<script>` block for the data specific t
 
 ## Editing content
 
-- **Home stats/testimonials** — `STATS` and `TESTIMONIALS` near the bottom of `index.html`. Empty arrays show placeholder boxes; fill like `{ value: "250+", label: "students tutored" }` or `{ quote: "...", who: "Parent of a Grade 10 student" }`.
-- **Tutoring subjects** — `PROVINCES` and `SUBJECTS` near the bottom of `tutoring.html`. `SUBJECTS` holds, per subject, the provincial courses (`canada`), the `ap` list and the `ib` list. The English subject also has an `extra` block for the international three-track program.
-- **Study guides** — `GUIDES` near the bottom of `study-guides.html`. One entry per guide. Name IB guides `IB <Subject> SL/HL` and standard courses by subject and grade (`Pre-Calculus 11`). `tag` is `IB`, `AP` or `Standard`; `group` is `math`, `science`, `humanities` or `skills`. For a guide with several parts (like IB History), use `topics: [{ name, url }]` instead of `url`.
-- **Team** — `TEAM` near the bottom of `team.html`, grouped by tab. For photos, create `assets/team/` and set `photo: "assets/team/first-last.webp"`. Leave `photo: ""` to show initials.
-- **About** — mission, vision, and facts list are plain HTML directly in `about.html`.
+Look for the `EDIT HERE` comments in each page.
 
-### Adding the logo
-
-Search each page for `logo-slot` (there's one in the header, one in the footer, on every page). Replace
-`<span class="logo-slot" aria-hidden="true">LOGO</span>` with
-`<img class="logo" src="assets/logo.png" alt="">` and put your file in `assets/`.
-Also swap the favicon `<link rel="icon" ...>` line near the top of each page (marked `TODO`).
-
-### Other things to check
-
-- Google Form links appear on several pages; search for `forms.gle` to change them all.
-- Add your contact email where the `TODO` comment sits in each page's footer.
+- **Home stats, chat, and testimonials**: plain HTML in `index.html`. For a stat, change both `data-value` and the visible text.
+- **Tutoring courses**: plain HTML in `tutoring.html`, one `data-panel` block per subject tab.
+- **Study guides**: one `<li>` per guide in `study-guides.html`. `data-group` is `math`, `science`, `humanities` or `skills`.
+- **Team**: `TEAM` near the bottom of `team.html`, grouped by tab. Photos go in `assets/team/`. Leave `photo: ""` to show initials.
+- **About**: plain HTML in `about.html`.
+- **Contact email and Google Form links**: search for `pen.edu45` and `forms.gle` to change them all.
+- **After changing `assets/styles.css`**: raise the number in `styles.css?v=2` on every page so visitors get the new version.
+- **New page**: add it to `sitemap.xml`.
 - The "Privacy policy" link in the footer points to `#`; replace it with your real policy page.
 
 ## Features
